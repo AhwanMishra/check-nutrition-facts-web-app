@@ -1,0 +1,16 @@
+.StyleHeader {
+  padding-left: 5px;
+  padding-top: 5px;
+}
+
+.StyleLogo {
+  zoom: 50%;
+}
+
+/* // For mobile display
+@media only screen and (max-width: 800px) {
+
+  .StyleHeader {
+  }
+
+} */
