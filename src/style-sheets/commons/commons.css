@@ -1,0 +1,40 @@
+.StyleHeader {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  border: 1px solid yellow;
+  width: calc(100% - 12px); /* Subtract paddings & margins to avoid overflow*/
+}
+
+.StyleLogo {
+  zoom: 50%;
+}
+
+.LeftPanel {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
+  border: 1px solid green;
+  padding: 0px;
+  width: max-content;
+  height: 100vh;
+}
+
+.MainCategory {
+  color: #3c4043;
+  text-align: center;
+  font-size: 13px;
+  font-family: Google Sans;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+/* For mobile display */
+@media only screen and (max-width: 800px) {
+
+  .LeftPanel {
+    display: none;
+  }
+
+}
+
+

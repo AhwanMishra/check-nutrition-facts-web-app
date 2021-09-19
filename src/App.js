@@ -1,11 +1,11 @@
+import { HomePage } from './components/home-page/home-page.js';
 import './style-sheets/main.css';
-import { Header } from './components/commons/header.js';
+
 function App() {
   return (
-  <>
-    <Header />
-    <div>"Hello World!"</div>
-  </>
+  <div className="DefaultStyle">
+    <HomePage />
+  </div>
   );
 }
 

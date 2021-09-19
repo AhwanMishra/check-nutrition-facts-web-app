@@ -1,7 +1,7 @@
 import React from 'react';
+import '../../style-sheets/commons/commons.css';
 
-//import Logo from '../../images/logos/Logo.png';
-//import '../../style-sheets/header.css';
+
 class MainCategory extends React.Component {
   
   
@@ -13,7 +13,13 @@ class MainCategory extends React.Component {
 
 
   render() {
-    return ("hii" + this.props.title + this.props.url);
+    return (
+      <div className="MainCategory">
+        <img className='StyleLogo' src={this.props.PATH} alt=""/>
+        <br/>
+        {this.props.LABEL}
+      </div>
+      );
   }
 }
 
