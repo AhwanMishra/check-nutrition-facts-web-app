@@ -21,6 +21,7 @@ class HomePage extends React.Component {
           <HomePageCenterOfHW/>
         
         </div>
+        
 
     </div>
     );

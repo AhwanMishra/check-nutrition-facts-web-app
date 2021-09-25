@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../style-sheets/commons/commons.css';
 
-
 class MainCategory extends React.Component {
   
   
@@ -15,10 +14,13 @@ class MainCategory extends React.Component {
   render() {
     return (
       <div className="MainCategory">
-        <img className='StyleLogo' src={this.props.PATH} alt=""/>
-        <br/>
-        {this.props.LABEL}
+        <a href={this.props.LINK}>
+          <img className='StyleLogo' src={this.props.IMAGE_PATH} alt=""/>
+          <br/>
+          {this.props.LABEL}
+        </a>
       </div>
+      
       );
   }
 }

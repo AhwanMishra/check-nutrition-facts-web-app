@@ -28,6 +28,10 @@
   padding-bottom: 9px;
 }
 
+.MainCategory:hover {
+  background-color: #F1F3F4;
+}
+
 /* For mobile display */
 @media only screen and (max-width: 800px) {
 
