@@ -10,7 +10,7 @@ class SearchBoxAndTitle extends React.Component {
     <>
     <div className="CenterMainTitle"> Check Nutrition Facts </div>
 
-          <div>
+          <div className="SearchBoxDiv">
             <input
                 type = "text"
                 placeholder ="Search for any Food of any brand"

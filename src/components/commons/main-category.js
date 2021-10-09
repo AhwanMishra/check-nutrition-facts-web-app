@@ -23,6 +23,7 @@ class MainCategory extends React.Component {
       
       );
   }
+
 }
 
 export { MainCategory }

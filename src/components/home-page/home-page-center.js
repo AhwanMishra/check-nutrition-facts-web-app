@@ -2,7 +2,6 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Switch
 } from 'react-router-dom';
 
@@ -17,7 +16,7 @@ import { About } from '../about-page/about';
 import { SearchResults } from '../search-page/search-results';
 import { ProductDetails } from '../product-page/product-details';
 
-import { APP_PATHS } from '../../constants/app-paths';
+import { MAIN_CATEGORY_PATHS } from '../../constants/app-paths';
 
 
 class HomePageCenterOfHW extends React.Component {
@@ -31,14 +30,14 @@ class HomePageCenterOfHW extends React.Component {
 
       <Router>
             <Switch>
-            <Route exact path={APP_PATHS.HOME} component={HomePageMainContainer}></Route>
-            <Route exact path={APP_PATHS.CATEGORIES} component={Categories}></Route>
-            <Route exact path={APP_PATHS.DISCOUNT_COUPONS} component={DiscountCoupons}></Route>
-            <Route exact path={APP_PATHS.HEALTHY_FOODS} component={HealthyFoods}></Route>
-            <Route exact path={APP_PATHS.BLOGS} component={Blogs}></Route>
-            <Route exact path={APP_PATHS.ABOUT} component={About}></Route>
-            <Route exact path={APP_PATHS.SEARCH_RESULTS} component={SearchResults}></Route>
-            <Route exact path={APP_PATHS.PRODUCT_DETAILS} component={ProductDetails}></Route>
+              <Route exact path={MAIN_CATEGORY_PATHS.HOME} component={HomePageMainContainer}></Route>
+              <Route exact path={MAIN_CATEGORY_PATHS.CATEGORIES} component={Categories}></Route>
+              <Route exact path={MAIN_CATEGORY_PATHS.DISCOUNT_COUPONS} component={DiscountCoupons}></Route>
+              <Route exact path={MAIN_CATEGORY_PATHS.HEALTHY_FOODS} component={HealthyFoods}></Route>
+              <Route exact path={MAIN_CATEGORY_PATHS.BLOGS} component={Blogs}></Route>
+              <Route exact path={MAIN_CATEGORY_PATHS.ABOUT} component={About}></Route>
+              <Route exact path={MAIN_CATEGORY_PATHS.SEARCH_RESULTS} component={SearchResults}></Route>
+              <Route exact path={MAIN_CATEGORY_PATHS.PRODUCT_DETAILS} component={ProductDetails}></Route>
             </Switch>
        </Router>
 

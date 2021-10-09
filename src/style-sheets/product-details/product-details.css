@@ -1,0 +1,197 @@
+/*! CSS Used from: https://i5.walmartimages.com/dfw/63fd9f59-5d28/309059e3-3cb4-4817-85a8-c66cb116bb07/v2/_next/static/css/656a23f954774dc20dd9.css */
+
+html section {
+	display: block;
+}
+
+html hr {
+	-webkit-box-sizing: content-box;
+	box-sizing: initial;
+	height: 0;
+	overflow: visible;
+}
+
+html .border-box,
+html div,
+html h3,
+html p,
+html section,
+html table,
+html td,
+html th,
+html tr {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html .bb {
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+html .b--black {
+	border-color: #000;
+}
+
+html .b--black-10 {
+	border-color: rgba(0, 0, 0, .1);
+}
+
+html .br3 {
+	border-radius: .5rem;
+}
+
+html .bw1 {
+	border-width: .125rem;
+}
+
+html .bw2 {
+	border-width: .25rem;
+}
+
+html .shadow-1 {
+	-webkit-box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .15);
+	box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .15);
+}
+
+html .flex {
+	display: flex;
+}
+
+html .justify-between {
+	justify-content: space-between;
+}
+
+html .normal {
+	font-weight: 400;
+}
+
+html .b {
+	font-weight: 700;
+}
+
+html .lh-title {
+	line-height: 1.25;
+}
+
+html .lh-copy {
+	line-height: 1.5;
+}
+
+html .w-100 {
+	width: 100%;
+}
+
+html .dark-gray {
+	color: #2e2f32;
+}
+
+html .mid-gray {
+	color: #46474a;
+}
+
+html .bg-white {
+	background-color: #fff;
+}
+
+html .pa3 {
+	padding: 16px;
+}
+
+html .pb1 {
+	padding-bottom: 4px;
+}
+
+html .pv1 {
+	padding-bottom: 4px;
+	padding-top: 4px;
+}
+
+html .ml2 {
+	margin-left: 8px;
+}
+
+html .mb2 {
+	margin-bottom: 8px;
+}
+
+html .mt1 {
+	margin-top: 4px;
+}
+
+html .mt2 {
+	margin-top: 8px;
+}
+
+html .mv0 {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+html .mv1 {
+	margin-bottom: 4px;
+	margin-top: 4px;
+}
+
+html .collapse {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+html .tr {
+	text-align: right;
+}
+
+html .ttl {
+	text-transform: lowercase;
+}
+
+html .f2 {
+	font-size: 24px;
+}
+
+html .f7 {
+	font-size: 12px;
+}
+
+.w_Dr {
+	border: 0!important;
+	clip: rect(1px 1px 1px 1px)!important;
+	clip: rect(1px, 1px, 1px, 1px)!important;
+	-webkit-clip-path: inset(50%)!important;
+	clip-path: inset(50%)!important;
+	height: 1px!important;
+	overflow: hidden!important;
+	padding: 0!important;
+	position: absolute!important;
+	white-space: nowrap!important;
+	width: 1px!important;
+}
+
+.OuterMostDiv {
+    width: 100%;
+    font-family: 'Helvetica';
+}
+
+.SecondOuterDiv {
+    display: flex;
+}
+
+.InnerMostDiv {
+    max-width: 702px;
+    display: inline-block;
+}
+
+
+.RightSideAd {
+    width: 300px;
+}
+
+/* For mobile display */
+@media only screen and (max-width: 1107px) {
+  
+    .RightSideAd {
+      display: none;
+    }
+  }
+  
