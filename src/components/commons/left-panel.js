@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../style-sheets/commons/commons.css';
-import  {MAIN_CATEGORIES}  from '.././../constants/main-category.js'
+import  { MAIN_CATEGORIES }  from '.././../constants/main-category.js'
 import { MainCategory } from './main-category';
 
 class LeftPanel extends React.Component {

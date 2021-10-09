@@ -1,26 +1,17 @@
 import React from 'react';
 
 import '../../style-sheets/home-page/home-page.css';
-class SearchBoxAndTitle extends React.Component {
+import { SearchBox } from '../home-page/search-box'
 
-
+class SearchBoxAndTitle extends React.Component{
   render() {
-    return (
-
-    <>
-    <div className="CenterMainTitle"> Check Nutrition Facts </div>
-
-          <div className="SearchBoxDiv">
-            <input
-                type = "text"
-                placeholder ="Search for any Food of any brand"
-                className = "SearchBox"
-             />
-          </div>
-          </>
+    return(
+      <>
+        <div className="CenterMainTitle"> Check Nutrition Facts </div>
+        <SearchBox/>
+      </>
     );
   }
-
 
 }
 

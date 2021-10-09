@@ -26,6 +26,7 @@
 }
 
 .CenterMainCategoryPanel {
+  margin-top: 30px;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #ffffff;
   border: 0px solid green;
@@ -46,19 +47,41 @@
   background-repeat:no-repeat;
 }
 
+.SearchBoxInput {
+	border: none;
+	min-height: 54px;
+  font-family: 'Google Sans';
+  font-size: 18px;
+  text-align: left;
+  color: #202124;
+  padding-left: 18px;
+  width: 306px;
+  background: transparent;
+}
+
+.SearchBoxInput:focus {
+  outline: none;
+}
+
+.SearchBoxInput ::placeholder{
+  color: #80868b;
+}
+
 .SearchBox {
   border-radius: 30px;
 	border: none;
 	box-shadow: 0 1px 3px rgba(60, 63, 66, .32), 0 4px 12px rgba(60, 63, 66, .15);
-	max-width: 80%;
 	min-height: 56px;
 	transition: width 200ms ease, max-width 200ms ease, height 200ms ease, min-height 200ms ease, top 200ms ease, left 200ms ease, border 200ms ease, margin 200ms ease, padding 200ms ease, border-radius 100ms ease, background-color 400ms ease;
-	width: 384px;
+	
 
   font-family: 'Google Sans';
   font-size: 16px;
   text-align: center;
   color: #202124;
+  width: 384px;
+
+  padding-right: 10px;
 }
 
 .SearchBox:focus {
@@ -69,9 +92,33 @@
   color: #80868b;
 }
 
-.SearchBoxDiv {
-  padding-bottom: 18px;
+
+
+.SearchBoxImage {
+  zoom : 30%;
+  padding-left: 36px;
 }
+
+.SearchBoxSecondRow_SearchItem {
+  color: #80868b;
+  background-color: transparent;
+  width: 90%;
+  border-radius: 90px;
+  display: inline-block;
+}
+
+
+
+.SearchBoxSecondRow_SearchItem:hover{
+  background-color: #F1F3F4;
+}
+
+
+.SearchBoxSecondRow_Hidden {
+  display: none;
+}
+
+
 
 
 .RightSideAd {

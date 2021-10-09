@@ -1,10 +1,10 @@
 import React from 'react';
 import { CommonCategoryRenderer } from './common-category-renderer';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom';
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   Switch
+// } from 'react-router-dom';
 
 class Categories extends React.Component {
 
