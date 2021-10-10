@@ -6,8 +6,9 @@ import postscribe from 'postscribe';
 const util = require('util');
 class RightSideAd extends React.Component {
 
-  constructor(){
-    super();
+  //If you are adding a constructor & you have props, then you have to mention it.
+  constructor(props){
+    super(props);
     this.pageSpecificDetails();
 
   }
@@ -35,6 +36,11 @@ class RightSideAd extends React.Component {
       case '/':
           this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Suggested Foods',
           'Protein' , 2);
+          break;
+
+      case '/search':
+          this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Buy from Amazon :',
+          this.props.QUERY , 3);
           break;
 
       
