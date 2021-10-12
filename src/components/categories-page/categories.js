@@ -1,43 +1,129 @@
 import React from 'react';
-import { CommonCategoryRenderer } from './common-category-renderer';
-// import {
-//   BrowserRouter as Router,
-//   Route,
-//   Switch
-// } from 'react-router-dom';
+
+import { CategoryComponent } from './category-component.js';
+import { RightSideAd } from '../commons/ads/right-side-ad';
+import '../../style-sheets/categories-page/categories-page.css';
+import { FOOD_CATEGORIES } from '../../constants/food-categories';
+import { FOOD_CATEGORY_PATHS } from '../../constants/app-paths.js';
+import { getParamFromCurrentURL, addParamToURL } from '../../utils/common-utils.js';
+import { DEFAULT_SEARCH } from '../commons/ads/right-side-ad';
+
 
 class Categories extends React.Component {
 
+    constructor()
+    {
+    super();
 
-  render() {
+    /*
+    https://stackoverflow.com/questions/41771441/react-cannot-read-property-of-undefined
+    It is required to bind the functions inside the class to properly reference them with "this".
+    Otherwise shows undefined function sometimes.
+    */
 
+      this.getCategoryResults = this.getCategoryResults.bind(this);
+      this.getCategoryFromCurrentURL = this.getCategoryFromCurrentURL.bind(this);
+      this.getSubCategoryFromCurrentURL = this.getSubCategoryFromCurrentURL.bind(this);  
+      this.getRightSideAd = this.getRightSideAd.bind(this);
 
-    // <Router>
-    //   <Switch>
-    //     <Route exact path={MAIN_CATEGORY_PATHS.HOME} component={HomePageMainContainer}></Route>
-    //     <Route exact path={MAIN_CATEGORY_PATHS.CATEGORIES} component={Categories}></Route>
-    //     <Route exact path={MAIN_CATEGORY_PATHS.DISCOUNT_COUPONS} component={DiscountCoupons}></Route>
-    //     <Route exact path={MAIN_CATEGORY_PATHS.HEALTHY_FOODS} component={HealthyFoods}></Route>
-    //     <Route exact path={MAIN_CATEGORY_PATHS.BLOGS} component={Blogs}></Route>
-    //     <Route exact path={MAIN_CATEGORY_PATHS.ABOUT} component={About}></Route>
-    //     <Route exact path={MAIN_CATEGORY_PATHS.SEARCH_RESULTS} component={SearchResults}></Route>
-    //     <Route exact path={MAIN_CATEGORY_PATHS.PRODUCT_DETAILS} component={ProductDetails}></Route>
-    //   </Switch>
-    // </Router>
+      this.addParamToURL = addParamToURL.bind(this);
+      this.getParamFromCurrentURL = getParamFromCurrentURL.bind(this);  
+    }
 
-
-    // for(category in XYZ) {
+    render() {
       return (
         <>
-          Categories will be shown here !
-          <CommonCategoryRenderer/>
+          <div className='CategoryResultContainer'>
+
+            <br/>
+            <label className='CategoryResultsText'>Search food by Categories</label>
+            <br/>
+            <br/>
+              
+            <div className='CategoryResults'>
+              <this.getCategoryResults/>
+            </div>
+          </div>
+          
+    
+          <this.getRightSideAd/>
+          
         </>
+        );
+  }
+
+  getRightSideAd () {
+    
+    let subCategory = this.getSubCategoryFromCurrentURL();
+    let category = this.getCategoryFromCurrentURL();
+
+    if(subCategory !== null) {
+      return (<RightSideAd TO_SEARCH = {subCategory} className="RightSideAd"/>);
+    }
+    else if(category !== null) {
+      return (<RightSideAd TO_SEARCH = {category} className="RightSideAd"/>);
+    }
+    else {
+      return (<RightSideAd TO_SEARCH = {DEFAULT_SEARCH} className="RightSideAd"/>);
+    }
+  }
+
+  getCategoryResults() {
+
+    var rows = [];
+    let category =  this.getCategoryFromCurrentURL();
+    if( category === null) {
+
+      Object.entries(FOOD_CATEGORIES).map(([key, value]) => (
+        rows.push(
+          <CategoryComponent IMAGE_LINK = {value.IMAGE_PATH}
+            LABEL= {value.LABEL}
+            LINK= {this.buildCategoryLink(value.LINK)}
+          />
+        )
+
+        ));
+    } else {
+      let CATEGORY = Object.keys(FOOD_CATEGORY_PATHS).find(key => FOOD_CATEGORY_PATHS[key] === category);
+      
+      Object.entries(FOOD_CATEGORIES[CATEGORY].SUB_CATEGORIES).map(([key, value]) => (
+        rows.push(
+          <CategoryComponent IMAGE_LINK = {value.IMAGE_PATH}
+            LABEL= {value.LABEL}
+            LINK= {this.buildSubCategoryLink(value.LINK)}
+          />
+        )
+
+        ));
+    }
+
+    if(true) {
+      return ( <>{rows}</> );
+    }
+    else return (
+      <div className="CategoryNotAvailable">
+        Sorry ! The item you are looking for is not available in our database.
+      </div>
       );
-    // }
+  }
+
+  buildCategoryLink(LINK) {
+    return this.addParamToURL('category', LINK);
+  }
+
+  buildSubCategoryLink(LINK) {
+    return this.addParamToURL('sub-category', LINK);
   }
 
 
+  getCategoryFromCurrentURL () {
+    return getParamFromCurrentURL('category');
+  }
 
+  getSubCategoryFromCurrentURL () {
+    return getParamFromCurrentURL('sub-category');
+  }
+  
 }
 
 export { Categories }

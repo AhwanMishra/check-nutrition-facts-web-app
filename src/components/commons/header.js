@@ -7,7 +7,9 @@ class Header extends React.Component {
   render() {
     return (
     <div className='StyleHeader'>
-      <img className='StyleLogo' src={Logo} alt="Logo"/>
+      <a href='/'>
+        <img className='StyleLogo' src={Logo} alt="Logo"/>
+        </a>
     </div>
     );
   }

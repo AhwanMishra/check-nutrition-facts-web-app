@@ -1,12 +1,19 @@
 import React from 'react';
 import { ProductComponent } from './product-component'
 import { RightSideAd } from '../commons/ads/right-side-ad';
+import { getParamFromCurrentURL } from '../../utils/common-utils.js'
+
 import '../../style-sheets/search-page/search-page.css';
 
 
 
 class SearchResults extends React.Component {
 
+  constructor() {
+    super();
+    this.getParamFromCurrentURL = getParamFromCurrentURL.bind(this);
+
+  }
 
   render() {
     return (
@@ -29,10 +36,7 @@ class SearchResults extends React.Component {
   }
 
   getSearchQueryFromCurrentURL () {
-
-    let params = (new URL(document.location)).searchParams;
-    let query = params.get("q");
-    return query;
+    return getParamFromCurrentURL('q');
   }
 
 

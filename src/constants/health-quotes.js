@@ -38,7 +38,7 @@ const QUOTES =
 "The doctor of the future will no longer treat the human frame with drugs, but rather will cure and prevent disease with nutrition. \n – Thomas Edison",
 "It’s not enough to eat veggies and do yoga. You also must work on healing the stress and anger in your life. \n – Karen Salmansohn",
 "Life expectancy would grow by leaps and bounds if green vegetables smelled as good as bacon. \n –Doug Larson",
-"What you eat literally becomes you. you have a choice in what you’re made of. Anonymous",
+"What you eat literally becomes you. you have a choice in what you’re made of. \n –Anonymous",
 "To insure good health: eat lightly, breathe deeply, live moderately, cultivate cheerfulness, and maintain an interest in life. \n –William Londen",
 "Appreci-eat your food! Savor the flavor and eat slowly. It takes your body about 20 minutes to realize it’s full. \n –Karen Salmansohn",
 "Your health is what you make of it. Everything you do and think either adds to the vitality, energy, and spirit you possess or takes away from it. \n – Ann Wigmore",
@@ -102,7 +102,7 @@ const QUOTES =
 "You need a good, healthy diet \n – it’s about finding out what your body needs. Sugar is a disaster for skin, as is white flour. \n – Thandie Newton"
 ]
 
-const QUOTE_OF_THE_DAY = "Quote of the day : ";
+const QUOTE_OF_THE_DAY = "Food Quote : ";
 
 
 export {QUOTE_OF_THE_DAY, QUOTES};

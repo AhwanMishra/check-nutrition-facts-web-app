@@ -4,6 +4,9 @@ import { SearchAdConfiguration , searchAdUrl} from './ad-script/script';
 import postscribe from 'postscribe';
 
 const util = require('util');
+
+const DEFAULT_SEARCH = 'protein';
+
 class RightSideAd extends React.Component {
 
   //If you are adding a constructor & you have props, then you have to mention it.
@@ -30,18 +33,23 @@ class RightSideAd extends React.Component {
       case '/product-details':
         
           this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Buy from Amazon :',
-          'Belvita Cinnamon Brown Sugar Breakfast' , 3);
+          'Belvita Cinnamon Brown Sugar Breakfast' , 3); //It will be changed
           break;
 
       case '/':
           this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Suggested Foods',
-          'Protein' , 2);
+          DEFAULT_SEARCH , 2);
           break;
 
       case '/search':
           this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Buy from Amazon :',
           this.props.QUERY , 3);
           break;
+
+      case '/categories':
+        this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Buy from Amazon :',
+        this.props.TO_SEARCH , 3);
+        break;
 
       
       default:
@@ -76,4 +84,4 @@ class RightSideAd extends React.Component {
 }
  
 
-export { RightSideAd };
+export { RightSideAd, DEFAULT_SEARCH };

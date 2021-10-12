@@ -1,16 +1,16 @@
-.ProductResultContainer {
+.CategoryResultContainer {
 	display: inline-block;
 	justify-content: left;
 	max-width: 900px;
 }
 
-.ProductResults {
+.CategoryResults {
 	display: inline-block;
 }
 
-.ProductComponent {
+.CategoryComponent {
 	display: inline-block;
-	max-width : 180px;
+	max-width : 172px;
 	border: #D3D3D3;
 	border-width: 1px;
 	border-style: solid;
@@ -18,26 +18,26 @@
 	margin: 9px;
 }
 
-.ProductComponent a {
+.CategoryComponent a {
 	text-decoration: none;
 	color: #5F6368;
 }
   
   
-.ProductComponent:hover{
+.CategoryComponent:hover{
 	background-color: #F1F3F4;
 }
   
   
-.ProductComponent:hover a{
+.CategoryComponent:hover a{
 	color: #4285F4;
 }
 
-.ProductImage {
+.CategoryImage {
 	zoom: 50%;
 }
 
-.ProductNotAvailable {
+.CategoryNotAvailable {
 	width: fit-content;
 	height: fit-content;
 	text-align: center;
@@ -54,7 +54,8 @@
 	margin: 9px;
 }
 
-.CategoryResultsText {
+
+.SearchResultsText {
 	color: #5F6368;
 	font-size: 18px;
 }
@@ -80,4 +81,3 @@
       display: none;
     }
   }
-  
