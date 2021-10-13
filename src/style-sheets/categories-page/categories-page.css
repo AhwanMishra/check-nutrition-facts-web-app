@@ -12,10 +12,12 @@
 	display: inline-block;
 	max-width : 172px;
 	border: #D3D3D3;
-	border-width: 1px;
+	border-width: 0px;
 	border-style: solid;
 	padding: 9px;
 	margin: 9px;
+	vertical-align: top;
+	font-size: 14px;
 }
 
 .CategoryComponent a {

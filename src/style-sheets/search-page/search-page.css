@@ -12,10 +12,11 @@
 	display: inline-block;
 	max-width : 180px;
 	border: #D3D3D3;
-	border-width: 1px;
+	border-width: 0px;
 	border-style: solid;
 	padding: 9px;
 	margin: 9px;
+	font-size: 14px;
 }
 
 .ProductComponent a {
@@ -62,6 +63,7 @@
 .BackToSearch {
 	width: 100%;
 	display: inline;
+	text-align: right;
 }
 .BackToSearch a {
 	text-decoration: none;

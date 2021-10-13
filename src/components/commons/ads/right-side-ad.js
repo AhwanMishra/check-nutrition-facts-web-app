@@ -48,7 +48,7 @@ class RightSideAd extends React.Component {
 
       case '/categories':
         this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Buy from Amazon :',
-        this.props.TO_SEARCH , 3);
+        this.props.TO_SEARCH , 2);
         break;
 
       

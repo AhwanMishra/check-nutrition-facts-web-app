@@ -1,7 +1,11 @@
 import React from 'react';
 import { ProductComponent } from './product-component'
 import { RightSideAd } from '../commons/ads/right-side-ad';
-import { getParamFromCurrentURL } from '../../utils/common-utils.js'
+import { getParamFromCurrentURL } from '../../utils/common-utils.js';
+import { BackLink } from '../../utils/common-utils.js';
+import { DEFAULT_SEARCH } from '../commons/ads/right-side-ad';
+
+
 
 import '../../style-sheets/search-page/search-page.css';
 
@@ -12,7 +16,11 @@ class SearchResults extends React.Component {
   constructor() {
     super();
     this.getParamFromCurrentURL = getParamFromCurrentURL.bind(this);
-
+    this.getQueryOrCategoryFromURL = this.getQueryOrCategoryFromURL.bind(this);
+    this.getSearchQueryFromCurrentURL = this.getSearchQueryFromCurrentURL.bind(this);
+    this.getCategoryFromCurrentURL = this.getCategoryFromCurrentURL.bind(this);
+    this.getSubCategoryFromCurrentURL = this.getSubCategoryFromCurrentURL.bind(this);
+    this.getRightSideAd = this.getRightSideAd.bind(this);
   }
 
   render() {
@@ -20,8 +28,8 @@ class SearchResults extends React.Component {
     <>
       <div className='ProductResultContainer'>
 
-          <label className='SearchResultsText'>Search Results for <i>"{this.getSearchQueryFromCurrentURL()}"</i>.</label>
-          <div className='BackToSearch'> <a href = '/'> Back To Search </a> </div>
+          <label className='SearchResultsText'>Search Results for <i>"{this.getQueryOrCategoryFromURL().replace(/-/g, ' ')}"</i>.</label>
+          <br/><div className='BackToSearch'> <BackLink/> </div>
           
         <div className='ProductResults'>
           <this.productResults/>
@@ -29,16 +37,57 @@ class SearchResults extends React.Component {
       </div>
       
 
-      <RightSideAd QUERY = {this.getSearchQueryFromCurrentURL()} className="RightSideAd"/>
+      <this.getRightSideAd/>
       
     </>
     );
+  }
+
+  getRightSideAd () {
+
+    let q = this.getSearchQueryFromCurrentURL();
+
+    if ( q !== null) {
+      return (<RightSideAd QUERY = {q} className="RightSideAd"/>);
+    }
+
+    let category = this.getCategoryFromCurrentURL();
+
+    if ( category !== null) {
+      return (<RightSideAd QUERY = {category.replace( /-/g, ' ')} className="RightSideAd"/>);
+    }
+
+    let subCategory = this.getSubCategoryFromCurrentURL();
+
+    if ( subCategory !== null) {
+      return (<RightSideAd QUERY = {subCategory.replace(/-/g, ' ')} className="RightSideAd"/>);
+    }
+
+    else {
+      return (<RightSideAd TO_SEARCH = {DEFAULT_SEARCH} className="RightSideAd"/>);
+    }
+  }
+
+  getQueryOrCategoryFromURL() {
+    
+    let q = this.getSearchQueryFromCurrentURL ();
+    
+    if( q != null ) return q;
+    else return this.getSubCategoryFromCurrentURL();
+
   }
 
   getSearchQueryFromCurrentURL () {
     return getParamFromCurrentURL('q');
   }
 
+  getSubCategoryFromCurrentURL () {
+    return getParamFromCurrentURL('sub-category');
+  }
+
+  getCategoryFromCurrentURL () {
+    return getParamFromCurrentURL('category');
+  }
 
   productResults() {
     var rows = [];
@@ -67,9 +116,8 @@ class SearchResults extends React.Component {
       );
   }
   
-
-
 }
+
 
 
 

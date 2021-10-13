@@ -4,18 +4,17 @@ import '../../style-sheets/home-page/home-page.css';
 import { useHistory } from "react-router-dom";
 import { MAIN_CATEGORY_PATHS } from '../../constants/app-paths';
 import  { MAIN_CATEGORIES }  from '.././../constants/main-category.js'
+import { reDirect } from '../../utils/common-utils.js';
 
 
 function SearchBox (){
 
-  const history = useHistory();
   const [textInput, setTextInput] = React.useState('');
 
+  const history = useHistory();
+
   const handleRoute = () =>{ 
-      history.push({
-              pathname: MAIN_CATEGORY_PATHS.SEARCH_RESULTS,
-              search: "?" + new URLSearchParams({'q': textInput}).toString()
-            })
+    reDirect(history, MAIN_CATEGORY_PATHS.SEARCH_RESULTS, {'q': textInput});
   }
   
   const handleChange = (event) => {

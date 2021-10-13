@@ -1,3 +1,22 @@
+import { useHistory } from "react-router-dom";
+
+export function reDirect(history, path, params) {
+
+  history.push({
+          pathname: path,
+          search: "?" + new URLSearchParams(params).toString()
+        })
+
+}
+
+// Build a new URL with params
+
+export function buildNewUrl(path, params) {
+  return path + "?" + new URLSearchParams(params).toString();
+}
+
+// Add a single param to a URL already containing some params 
+
 export function addParamToURL(param, value) {
 
     let existingParam = getParamFromCurrentURL(param);
@@ -23,3 +42,13 @@ export function getParamFromCurrentURL (param) {
       let value = params.get(param);
       return value;
     }
+
+
+export const BackLink = () => {
+    let history = useHistory();
+    return (
+        <>
+          <button onClick={() => history.goBack()}> Back </button>
+        </>
+    );
+};

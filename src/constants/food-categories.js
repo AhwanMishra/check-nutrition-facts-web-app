@@ -208,11 +208,6 @@ const SWEET_TREATS = {
     IMAGE_PATH: categories,
     LINK: FOOD_SUB_CATEGORY_PATHS.SWEET_TREATS
 };
-const FROM_OUR_BAKERY = {
-    LABEL: "From Our Bakery",
-    IMAGE_PATH: categories,
-    LINK: FOOD_SUB_CATEGORY_PATHS.FROM_OUR_BAKERY
-};
 const CUSTOM_CAKES = {
     LABEL: "Custom Cakes",
     IMAGE_PATH: categories,
@@ -596,7 +591,7 @@ const NON_ALCOHOLIC_BEER_AND_WINE = {
 
 
 const FRESH_PRODUCE = {
-    LABEL: "Bakery & Bread",
+    LABEL: "Fresh Produce",
     IMAGE_PATH: categories,
     LINK: FOOD_CATEGORY_PATHS.FRESH_PRODUCE,
     SUB_CATEGORIES: {
@@ -674,7 +669,6 @@ const BAKERY_AND_BREAD = {
         PIES,
         COOKIES_AND_BROWNIES,
         SWEET_TREATS,
-        FROM_OUR_BAKERY,
         CUSTOM_CAKES
     }
 };

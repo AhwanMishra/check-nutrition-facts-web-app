@@ -111,7 +111,6 @@ const CAKES_AND_CUPCAKES = 'cakes-and-cupcakes';
 const PIES = 'pies';
 const COOKIES_AND_BROWNIES = 'cookies-and-brownies';
 const SWEET_TREATS = 'sweet-treats';
-const FROM_OUR_BAKERY = 'from-our-bakery';
 const CUSTOM_CAKES = 'custom-cakes';
 
 // FROZEN_..............................................................
@@ -253,7 +252,6 @@ const FOOD_SUB_CATEGORY_PATHS = {
     PIES,
     COOKIES_AND_BROWNIES,
     SWEET_TREATS,
-    FROM_OUR_BAKERY,
     CUSTOM_CAKES,
     FROZEN_BREAKFAST,
     FROZEN_POTATOES,

@@ -3,6 +3,7 @@ import { DiscountComponent } from '../discount-coupons-page/discount-component';
 import { RightSideAd } from '../commons/ads/right-side-ad';
 import '../../style-sheets/discount-coupons/discount-coupons.css';
 import { OFFERS } from '../../constants/discount-coupons-constants';
+import { BackLink } from '../../utils/common-utils';
 
 
 class DiscountCoupons extends React.Component {
@@ -15,7 +16,9 @@ class DiscountCoupons extends React.Component {
     <div className='DiscountResultContainer'>
       <br/>
       <label className='DiscountResultsText'>Discount Coupons for Grocery and Gourmet Food </label>
-      <br/><br/><br/>
+      <br/><div className='BackToSearch'> <BackLink/> </div>
+<br/><br/>
+      <br/>
         
       <div className='DiscountResults'>
         <this.discountResults/>
