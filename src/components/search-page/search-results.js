@@ -4,6 +4,7 @@ import { RightSideAd } from '../commons/ads/right-side-ad';
 import { getParamFromCurrentURL } from '../../utils/common-utils.js';
 import { BackLink } from '../../utils/common-utils.js';
 import { DEFAULT_SEARCH } from '../commons/ads/right-side-ad';
+import { SearchFilter } from '../commons/search-filter';
 
 
 
@@ -29,7 +30,9 @@ class SearchResults extends React.Component {
       <div className='ProductResultContainer'>
 
           <label className='SearchResultsText'>Search Results for <i>"{this.getQueryOrCategoryFromURL().replace(/-/g, ' ')}"</i>.</label>
-          <br/><div className='BackToSearch'> <BackLink/> </div>
+          <br/><br/><div className='BackToSearch'> <BackLink/> </div>
+
+          <div align='center'> <SearchFilter/> </div>
           
         <div className='ProductResults'>
           <this.productResults/>

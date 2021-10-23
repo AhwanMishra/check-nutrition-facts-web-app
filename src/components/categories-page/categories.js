@@ -39,7 +39,7 @@ class Categories extends React.Component {
 
             <br/>
             <label className='CategoryResultsText'>Search food by Categories</label>
-            <br/><div className='BackToSearch'> <BackLink/> </div>
+            <br/><br/><div className='BackToSearch'> <BackLink/> </div>
 
             <br/>
               

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../style-sheets/categories-page/categories-page.css';
+import '../../style-sheets/commons/commons.css';
 
 class CategoryComponent extends React.Component {
   
@@ -8,7 +8,7 @@ class CategoryComponent extends React.Component {
     return (
       <div className="CategoryComponent">
         <a href={ this.props.LINK }>
-          <img className='CategoryImage' src={this.props.IMAGE_LINK} alt=""/>
+          <img className='DefaultCategoryImage' src={this.props.IMAGE_LINK} alt="image"/>
           <br/>
           { this.props.LABEL }
         </a>

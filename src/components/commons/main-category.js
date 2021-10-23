@@ -15,7 +15,7 @@ class MainCategory extends React.Component {
     return (
       <div className="MainCategory">
         <a href={this.props.LINK}>
-          <img className='StyleLogo' src={this.props.IMAGE_PATH} alt=""/>
+          <img className='DefaultCategoryImage' src={this.props.IMAGE_PATH} alt=""/>
           <br/>
           {this.props.LABEL}
         </a>
