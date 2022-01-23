@@ -1,13 +1,16 @@
 import React from 'react';
 
 import { CategoryComponent } from './category-component.js';
-import { RightSideAd } from '../commons/ads/right-side-ad';
 import '../../style-sheets/categories-page/categories-page.css';
 import { FOOD_CATEGORIES } from '../../constants/food-categories';
 import { FOOD_CATEGORY_PATHS, MAIN_CATEGORY_PATHS } from '../../constants/app-paths.js';
 import { getParamFromCurrentURL, addParamToURL } from '../../utils/common-utils.js';
 import { DEFAULT_SEARCH } from '../commons/ads/right-side-ad';
 import { buildNewUrl, BackLink } from '../../utils/common-utils.js';
+
+import { getDesktopAd, getMobileAd } from '../commons/ads/ad-utils'
+
+import { Footer } from '../commons/footer';
 
 
 
@@ -26,10 +29,14 @@ class Categories extends React.Component {
 
       this.getCategoryResults = this.getCategoryResults.bind(this);
       this.getCategoryFromCurrentURL = this.getCategoryFromCurrentURL.bind(this);
-      this.getRightSideAd = this.getRightSideAd.bind(this);
+      this.buildAndgetRightSideAd = this.buildAndgetRightSideAd.bind(this);
+      this.buildAndgetMobileAd = this.buildAndgetMobileAd.bind(this);
 
       this.addParamToURL = addParamToURL.bind(this);
-      this.getParamFromCurrentURL = getParamFromCurrentURL.bind(this);  
+      this.getParamFromCurrentURL = getParamFromCurrentURL.bind(this);
+      
+      this.getDesktopAd = getDesktopAd.bind(this);
+      this.getMobileAd = getMobileAd.bind(this);
     }
 
     render() {
@@ -39,9 +46,13 @@ class Categories extends React.Component {
 
             <br/>
             <label className='CategoryResultsText'>Search food by Categories</label>
-            <br/><br/><div className='BackToSearch'> <BackLink/> </div>
-
             <br/>
+            <div className='BackToSearch'> <BackLink/> </div>
+
+            <this.buildAndgetMobileAd/>
+
+
+
               
             <div className='CategoryResults'>
               <this.getCategoryResults/>
@@ -49,21 +60,39 @@ class Categories extends React.Component {
           </div>
           
     
-          <this.getRightSideAd/>
+          <this.buildAndgetRightSideAd/>
+
+          <Footer/>
+
+
           
         </>
         );
   }
 
-  getRightSideAd () {
+  buildAndgetRightSideAd () {
     
     let category = this.getCategoryFromCurrentURL();
 
     if(category !== null) {
-      return (<RightSideAd TO_SEARCH = {category} className="RightSideAd"/>);
+      return (<this.getDesktopAd TO_SEARCH = {category}/>);
+      
     }
     else {
-      return (<RightSideAd TO_SEARCH = {DEFAULT_SEARCH} className="RightSideAd"/>);
+      return (<this.getDesktopAd TO_SEARCH = {DEFAULT_SEARCH}/>);
+    }
+  }
+
+  buildAndgetMobileAd () {
+    
+    let category = this.getCategoryFromCurrentURL();
+
+    if(category !== null) {
+      return (<this.getMobileAd TO_SEARCH = {category}/>);
+      
+    }
+    else {
+      return (<this.getMobileAd TO_SEARCH = {DEFAULT_SEARCH}/>);
     }
   }
 

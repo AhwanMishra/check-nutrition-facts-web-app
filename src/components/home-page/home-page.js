@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { HomePageCenterOfHW } from './home-page-center.js';
-import { Header } from '../commons/header.js';
+import { Header } from '../commons/header';
+
 import { LeftPanel } from '../commons/left-panel.js';
 
 import '../../style-sheets/home-page/home-page.css';
@@ -19,8 +20,10 @@ class HomePage extends React.Component {
           <LeftPanel/>
           
           <HomePageCenterOfHW/>
+
         
         </div>
+
         
 
     </div>

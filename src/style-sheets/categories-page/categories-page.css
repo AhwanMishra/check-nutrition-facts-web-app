@@ -60,7 +60,7 @@
 
 .BackToSearch {
 	width: 100%;
-	display: inline;
+	display :block;
 }
 .BackToSearch a {
 	text-decoration: none;

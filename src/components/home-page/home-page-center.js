@@ -14,7 +14,7 @@ import { Blogs } from '../blogs-page/blogs';
 import { About } from '../about-page/about';
 
 import { SearchResults } from '../search-page/search-results';
-import { ProductDetails } from '../product-page/product-details';
+import { ProductPage } from '../product-page/product-page';
 
 import { MAIN_CATEGORY_PATHS } from '../../constants/app-paths';
 
@@ -37,7 +37,7 @@ class HomePageCenterOfHW extends React.Component {
               <Route exact path={MAIN_CATEGORY_PATHS.BLOGS} component={Blogs}></Route>
               <Route exact path={MAIN_CATEGORY_PATHS.ABOUT} component={About}></Route>
               <Route exact path={MAIN_CATEGORY_PATHS.SEARCH_RESULTS} component={SearchResults}></Route>
-              <Route exact path={MAIN_CATEGORY_PATHS.PRODUCT_DETAILS} component={ProductDetails}></Route>
+              <Route exact path={MAIN_CATEGORY_PATHS.PRODUCT_DETAILS} component={ProductPage}></Route>
             </Switch>
        </Router>
 

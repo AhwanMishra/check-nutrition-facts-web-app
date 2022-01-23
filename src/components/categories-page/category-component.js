@@ -8,7 +8,7 @@ class CategoryComponent extends React.Component {
     return (
       <div className="CategoryComponent">
         <a href={ this.props.LINK }>
-          <img className='DefaultCategoryImage' src={this.props.IMAGE_LINK} alt="image"/>
+          <img className='FoodCategoryImage' src={this.props.IMAGE_LINK} alt=""/>
           <br/>
           { this.props.LABEL }
         </a>

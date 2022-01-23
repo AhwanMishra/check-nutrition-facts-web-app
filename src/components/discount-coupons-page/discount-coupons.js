@@ -4,6 +4,7 @@ import { RightSideAd } from '../commons/ads/right-side-ad';
 import '../../style-sheets/discount-coupons/discount-coupons.css';
 import { OFFERS } from '../../constants/discount-coupons-constants';
 import { BackLink } from '../../utils/common-utils';
+import { Footer } from '../commons/footer';
 
 
 class DiscountCoupons extends React.Component {
@@ -26,7 +27,9 @@ class DiscountCoupons extends React.Component {
     </div>
 
 
-    <RightSideAd className="RightSideAd"/>
+    <RightSideAd/>
+    <Footer/>
+
 
     </>
     );

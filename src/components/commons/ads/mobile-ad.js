@@ -9,23 +9,18 @@ const util = require('util');
 
 const DEFAULT_SEARCH = 'best sellers';
 
-class RightSideAd extends React.Component {
+class MobileAd extends React.Component {
 
   //If you are adding a constructor & you have props, then you have to mention it.
   constructor(props){
     super(props);
     this.pageSpecificDetails();
-    this.getDesktopAd = this.getDesktopAd.bind(this);
+    this.getMobileAd = this.getMobileAd.bind(this);
   }
   
   render()  {
     return (
-      <div className="RightSideAd">
-      <div className="mt-3 item__wrapper" id="amazon-ads-container"> 
-        <div id="amazon-search-container">&nbsp;</div>
-        <div id="amzn_assoc_ad_div_adunit0_0">&nbsp;</div>
-      </div>  
-    </div>
+      <this.getMobileAd/>
     );
   }
 
@@ -35,28 +30,28 @@ class RightSideAd extends React.Component {
       case '/product-details':
         
           this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Buy from Amazon :',
-          'Belvita Cinnamon Brown Sugar Breakfast' , 3); //It will be changed
+          'Belvita Cinnamon Brown Sugar Breakfast' , 1); //It will be changed
           break;
 
       case '/':
-          this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Suggested Foods',
-          DEFAULT_SEARCH , 2);
+          this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Suggested foods',
+          DEFAULT_SEARCH , 1);
           break;
 
       case '/search':
           this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Buy from Amazon :',
-          this.props.propsFromParent.QUERY , 3);
+          this.props.propsFromParent.QUERY , 1);
           break;
 
       case '/categories':
         this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Buy from Amazon :',
-        this.props.propsFromParent.TO_SEARCH , 2);
+        this.props.propsFromParent.TO_SEARCH , 1);
         break;
 
       
       default:
         this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Suggested Foods',
-          'Protein' , 2);
+          'Protein' , 1);
     }
   }
   
@@ -85,7 +80,7 @@ class RightSideAd extends React.Component {
   }
 
 
-  getDesktopAd() {
+  getMobileAd() {
       return (
         <div className="MobileAd">
       <div className="mt-3 item__wrapper" id="amazon-ads-container"> 
@@ -94,11 +89,8 @@ class RightSideAd extends React.Component {
       </div>  
     </div>);
   }
+
 }
-
-
-
-
  
 
-export { RightSideAd, DEFAULT_SEARCH };
+export { MobileAd, DEFAULT_SEARCH };

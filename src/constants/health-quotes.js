@@ -69,7 +69,7 @@ const QUOTES =
 "Tell me what you eat, and I will tell you who you are. \n – Brillat-Savarin",
 "Nothing has benefited me more physically, mentally and most important spiritually, then adapting a vegan diet. The best decision I have made as a human for me and the planet. \n – Tim Shieff, Professional Freerunner",
 "Let things taste of what they are.― Alice Waters",
-"Keeping your body healthy is an expression of gratitude to the whole cosmos \n – the trees, the clouds, everything. \n – Thich Nhat Hanh",
+"Keeping your body healthy is an expression of gratitude to the whole cosmos, \n  the trees, the clouds, everything. \n – Thich Nhat Hanh",
 "Every girl and dude should be eating healthy food. \n – Unknown",
 "He who takes medicine and neglects to diet wastes the skill of his doctors. \n – Chinese Proverb",
 "Cake and pie may taste like heaven, but you’ll regret them when you turn 37! \n – Unknown",

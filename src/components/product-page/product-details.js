@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { RightSideAd } from '../commons/ads/right-side-ad';
 import '../../style-sheets/product-details/product-details.css';
 
 /*
@@ -14,9 +13,7 @@ class ProductDetails extends React.Component {
 
   render() {
     return (
-      <div className = 'OuterMostDiv'>
-        <div align = 'center'>
-          <div align = 'left' className='InnerMostDiv'>
+
 
                     <div class="bg-white br3 shadow-1 border-box w-100 pa3">
                 <section>
@@ -139,14 +136,6 @@ class ProductDetails extends React.Component {
                 </section>
               </div>
 
-
-          </div>
-          <RightSideAd className="RightSideAd"/>
-
-
-        </div>
-
-    </div>
     );
   }
 

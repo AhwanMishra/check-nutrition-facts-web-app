@@ -5,10 +5,20 @@ import { SearchBoxAndTitle } from '../home-page/search-box-and-title';
 import { MAIN_CATEGORIES } from '../../constants/main-category';
 import { MainCategory } from '../commons/main-category';
 import { HomePageBanner } from '../home-page/home-page-banner';
-import { RightSideAd } from '../commons/ads/right-side-ad';
 import { QUOTE_OF_THE_DAY, QUOTES } from '../../constants/health-quotes'
+import { getDesktopAd, getMobileAd, isMobileDevice} from '../commons/ads/ad-utils'
+import { Footer } from '../commons/footer';
+
+
 
 class HomePageMainContainer extends React.Component {
+
+  constructor() {
+    super();
+    this.randomInteger = this.randomInteger.bind(this);
+    this.getDesktopAd = getDesktopAd.bind(this);
+    this.getMobileAd = getMobileAd.bind(this);
+  }
 
 
   render() {
@@ -30,7 +40,8 @@ class HomePageMainContainer extends React.Component {
                 <MainCategory LABEL = {MAIN_CATEGORIES.ABOUT.LABEL} IMAGE_PATH = {MAIN_CATEGORIES.ABOUT.IMAGE_PATH} LINK = {MAIN_CATEGORIES.ABOUT.LINK}/>      
               </div>
 
-              <br/><br/><br/><br/><br/>
+              <this.addSpaces/>
+
               <div className = "Quote">
                 
                 <div style={{fontWeight: "bold"}}>{QUOTE_OF_THE_DAY}</div>
@@ -38,27 +49,35 @@ class HomePageMainContainer extends React.Component {
 
               </div>
 
+              <this.getMobileAd/>
+              <Footer/>
+
+
             </div>
-          
+            </div>
+
+              <this.getDesktopAd/>
+
           </div>
-
-
-
-
-          <div className="RightSideAd">
-            <RightSideAd/>
-          </div>
-        </div>
       </>
 
     );
   }
+
 
   randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
 
+  addSpaces (){
+    if(!isMobileDevice()) {
+        return <><br /><br /><br /><br /><br /></>;
+    }
+    else return null;
+  }
+
 }
+
 
 export { HomePageMainContainer }

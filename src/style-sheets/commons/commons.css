@@ -6,14 +6,35 @@
   width: calc(100% - 12px); /* Subtract paddings & margins to avoid overflow*/
 }
 
+.StyleFooter {
+  position: relative;
+  bottom: 0;
+  text-align: center;
+  padding-top: 27px;
+}
+
+.StyleFooter a {
+  text-decoration: none;
+  color: #5F6368;
+}
+
+.StyleFooter:hover a{
+  color: #4285F4;
+}
+
 .StyleLogo {
-	height : 45px;
+	height : 36px;
   width: auto;
 }
 
 .DefaultCategoryImage {
 	width : 42px;
 	height : 42px;
+}
+
+.FoodCategoryImage {
+	width : 54px;
+	height : 54px;
 }
 
 .LeftPanel {
@@ -49,6 +70,19 @@
 .MainCategory:hover a{
   color: #4285F4;
 }
+
+
+.RightSideAd {
+  display: fixed;
+  max-width:180px;
+  float: right;
+}
+
+.MobileAd {
+  display: fixed;
+  max-width:100vw;
+}
+
 
 
 /* For mobile display */

@@ -179,9 +179,22 @@ html .f7 {
 
 .InnerMostDiv {
     max-width: 702px;
-    display: inline-block;
+	color: "#636363";
+	display: inline-block;
 }
 
+.PieChart {
+	text-align: left;
+	display: inline-block;
+	width: max-content;
+	padding-left: 9px;
+}
+
+.ProductSection {
+	max-width: 702px;
+	display: 'block';
+	padding-bottom: 18px;
+}
 
 .RightSideAd {
     width: 300px;
