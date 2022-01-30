@@ -4,6 +4,7 @@ import { RightSideAd } from '../commons/ads/right-side-ad';
 import { CnfPieChart } from './pie-chart';
 import { ProductDetails } from './product-details';
 import '../../style-sheets/product-details/product-details.css';
+import { NutritionDetails } from './nutrition-details';
 
 /*
 To add:
@@ -16,31 +17,36 @@ class ProductPage extends React.Component {
 
   render() {
     return (
-      <div className = 'OuterMostDiv'>
+      <div align="center" className = 'OuterMostDiv'>
         
-        <div align = 'center' style={{color: "#636363"}}>
+        <div align = 'center' style={{color: "#636363", display: 'block', borderStyle: "none"}}>
 
-            <div align='left' className="ProductSection">
-                <b>Macros Distribution</b>
-            </div>
+          <div align = 'center' className='SecondOuterDiv '>
 
-            <div align = 'left' className='InnerMostDiv'>
-                <div className = "PieChart">
-                      Amount<br/>  Per Gram <br/>
-                    <CnfPieChart TYPE={"AmountPerGram"} FAT={30} CARB={60} PROTEIN={30}/>
-                </div> 
-                <div className = "PieChart"> 
-                    Where do calories<br/>come from ?<br/>
-                    <CnfPieChart TYPE={"CaloryDistribution"} FAT={30} CARB={60} PROTEIN={30}/>
-                </div> 
+              <div align = 'center' className='InnerMostDiv br3 shadow-1'>
+                <h3> <b>Macros Distribution</b> </h3>
+                  <div className = "PieChart br3 shadow-1" >
+                        Amount<br/>  Per Gram <br/>
+                      <CnfPieChart TYPE={"AmountPerGram"} FAT={30} CARB={60} PROTEIN={30}/>
+                  </div> 
+                  <div className = "PieChart br3 shadow-1"> 
+                      Where do calories<br/>come from ?<br/>
+                      <CnfPieChart TYPE={"CaloryDistribution"} FAT={30} CARB={60} PROTEIN={30}/>
+                  </div> 
+                  <br/>                  <br/>
 
-            </div>
+                  <NutritionDetails/>
 
-            <div align = 'left' className='InnerMostDiv'>
-              <ProductDetails/>
-            </div>
 
-            <RightSideAd/>
+              </div>
+
+              <div align = 'left' className='InnerMostDiv'>
+                <ProductDetails/>
+              </div>
+
+          </div>
+
+          <RightSideAd/>
 
 
 

@@ -7,6 +7,8 @@ class HealthyFoods extends React.Component {
     return (
     <>
       Healthy Foods will be shown here !
+
+      Just add low sodium sugar such .....
     </>
     );
   }
