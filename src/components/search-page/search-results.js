@@ -10,7 +10,8 @@ import { getDesktopAd, getMobileAd } from '../commons/ads/ad-utils'
 
 import '../../style-sheets/search-page/search-page.css';
 
-
+import { Pagination } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
 class SearchResults extends React.Component {
 
@@ -50,7 +51,16 @@ class SearchResults extends React.Component {
       </div>
       
 
+
       <this.buildAndGetRightSideAd/>
+
+      <Pagination
+          currentPage={1}
+          totalPages={10}
+          onChange={this.onChange}
+          onNext={this.onNext}
+          onPrevious={this.onPrevious}
+        />
       
     </>
     );

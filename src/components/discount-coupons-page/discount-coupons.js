@@ -5,6 +5,8 @@ import '../../style-sheets/discount-coupons/discount-coupons.css';
 import { OFFERS } from '../../constants/discount-coupons-constants';
 import { BackLink } from '../../utils/common-utils';
 import { Footer } from '../commons/footer';
+import { Pagination } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
 
 class DiscountCoupons extends React.Component {
@@ -24,6 +26,17 @@ class DiscountCoupons extends React.Component {
       <div className='DiscountResults'>
         <this.discountResults/>
       </div>
+
+      {/* https://ui.docs.amplify.aws/components/pagination */}
+
+      <Pagination
+          currentPage={1}
+          totalPages={10}
+          onChange={this.onChange}
+          onNext={this.onNext}
+          onPrevious={this.onPrevious}
+        />
+
     </div>
 
 
