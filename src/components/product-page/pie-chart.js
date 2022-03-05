@@ -13,22 +13,31 @@ class CnfPieChart extends React.Component {
 
     constructor(props) {
         super(props);
-        if(props.TYPE === "CaloryDistribution") {
-            this.FAT = props.FAT * FAT_CALORY_PERCENTAGE;
-            this.PROTEIN = props.PROTEIN * PROTEIN_CALORY_PERCENTAGE;
-            this.CARB = props.CARB * CARB_CALORY_PERCENTAGE;
-            
-        }
-        else {
-            this.FAT = props.FAT;
-            this.PROTEIN = props.FAT;
-            this.CARB = props.CARB;
+        this.setMacros = this.setMacros.bind(this); 
+    }
+
+    setMacros() {
+        if(Object.keys(this.props.MACROS).length) {
+            if(this.props.TYPE === "CaloryDistribution") {
+
+                this.FAT = parseFloat(this.props.MACROS.fat) * FAT_CALORY_PERCENTAGE;
+                this.PROTEIN = parseFloat(this.props.MACROS.protein) * PROTEIN_CALORY_PERCENTAGE;
+                this.CARB = parseFloat(this.props.MACROS.carb) * CARB_CALORY_PERCENTAGE;                
+            }
+            else {
+
+                this.FAT = parseFloat(this.props.MACROS.fat);
+                this.PROTEIN = parseFloat(this.props.MACROS.protein);
+                this.CARB = parseFloat(this.props.MACROS.carb);
+            }
         }
     }
 
     render() {
 
+        if(Object.keys(this.props.MACROS).length === 0) return (<></>);
         const shiftSize = 3;
+        this.setMacros();
         return (
             <PieChart style={{ height: '171px', width : "auto" /*backgroundColor : 'gray'*/ }}
             data={

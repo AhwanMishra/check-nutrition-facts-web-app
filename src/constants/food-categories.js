@@ -56,11 +56,11 @@ const PORK = {
     IMAGE_PATH: food_categories,
     LINK: FOOD_SUB_CATEGORY_PATHS.PORK
 };
-const SEAFOOD = {
-    LABEL: "Seafood",
-    IMAGE_PATH: food_categories,
-    LINK: FOOD_SUB_CATEGORY_PATHS.SEAFOOD
-};
+// const SEAFOOD = {
+//     LABEL: "Seafood",
+//     IMAGE_PATH: food_categories,
+//     LINK: FOOD_SUB_CATEGORY_PATHS.SEAFOOD
+// };
 const SUSTAINABLE_SEAFOOD = {
     LABEL: "Sustainable Seafood",
     IMAGE_PATH: food_categories,
@@ -81,6 +81,13 @@ const BACON_HOT_DOGS_AND_SAUSAGE = {
     IMAGE_PATH: food_categories,
     LINK: FOOD_SUB_CATEGORY_PATHS.BACON_HOT_DOGS_AND_SAUSAGE
 };
+
+const BACON_HOT_DOGS_AND_SAUSAGES = {
+    LABEL: "Bacon, Hot Dogs & Sausages",
+    IMAGE_PATH: food_categories,
+    LINK: FOOD_SUB_CATEGORY_PATHS.BACON_HOT_DOGS_AND_SAUSAGES
+};
+
 const DELI_MEAT_AND_CHEESE = {
     LABEL: "Deli Meat & Cheese",
     IMAGE_PATH: food_categories,
@@ -483,11 +490,11 @@ const FRESH_JUICE_AND_CHILLED_BEVERAGES = {
     IMAGE_PATH: food_categories,
     LINK: FOOD_SUB_CATEGORY_PATHS.FRESH_JUICE_AND_CHILLED_BEVERAGES
 };
-const ICE = {
-    LABEL: "Ice",
-    IMAGE_PATH: food_categories,
-    LINK: FOOD_SUB_CATEGORY_PATHS.ICE
-};
+// const ICE = {
+//     LABEL: "Ice",
+//     IMAGE_PATH: food_categories,
+//     LINK: FOOD_SUB_CATEGORY_PATHS.ICE
+// };
 const COCKTAILS_AND_MIXES = {
     LABEL: "Cocktails & Mixes",
     IMAGE_PATH: food_categories,
@@ -568,11 +575,11 @@ const CHAMPAGNE_AND_SPARKLING_WINE = {
     IMAGE_PATH: food_categories,
     LINK: FOOD_SUB_CATEGORY_PATHS.CHAMPAGNE_AND_SPARKLING_WINE
 };
-const LIQUOR = {
-    LABEL: "Liquor",
-    IMAGE_PATH: food_categories,
-    LINK: FOOD_SUB_CATEGORY_PATHS.LIQUOR
-};
+// const LIQUOR = {
+//     LABEL: "Liquor",
+//     IMAGE_PATH: food_categories,
+//     LINK: FOOD_SUB_CATEGORY_PATHS.LIQUOR
+// };
 const COCKTAILS_AND_MIXERS = {
     LABEL: "Cocktails & Mixers",
     IMAGE_PATH: food_categories,
@@ -613,11 +620,11 @@ const MEAT_AND_SEAFOOD = {
         BEEF_AND_LAMB,
         CHICKEN,
         PORK,
-        SEAFOOD,
+        // SEAFOOD,
         SUSTAINABLE_SEAFOOD,
         ORGANIC_AND_PLANT_BASED,
         TURKEY,
-        BACON_HOT_DOGS_AND_SAUSAGE
+        BACON_HOT_DOGS_AND_SAUSAGES
     }
 };
 
@@ -707,10 +714,10 @@ const PANTRY = {
     }
 };
 
-const BREAKFAST_AND_CEREAL = {
+const BREAKFAST_AND_CERAL = {
     LABEL: "Breakfast & Cereal",
     IMAGE_PATH: food_categories,
-    LINK: FOOD_CATEGORY_PATHS.BREAKFAST_AND_CEREAL,
+    LINK: FOOD_CATEGORY_PATHS.BREAKFAST_AND_CERAL,
     SUB_CATEGORIES: {
         CEREAL_AND_GRANOLA,
         PANCAKES_AND_WAFFLES,
@@ -780,7 +787,7 @@ const BEVERAGES = {
         DRINK_MIXES_AND_WATER_ENHANCERS,
         NON_ALCOHOLIC_MIXERS,
         FRESH_JUICE_AND_CHILLED_BEVERAGES,
-        ICE,
+        // ICE,
         COCKTAILS_AND_MIXES
     }
 };
@@ -814,7 +821,7 @@ const ALCOHOL = {
         WHITE_WINE,
         ROSE_AND_BLUSH_WINE,
         CHAMPAGNE_AND_SPARKLING_WINE,
-        LIQUOR,
+        // LIQUOR,
         COCKTAILS_AND_MIXERS,
         LIGHT_AND_LOW_CALORIE_ALCOHOL,
         NON_ALCOHOLIC_BEER_AND_WINE
@@ -830,7 +837,7 @@ const FOOD_CATEGORIES = {
     BAKERY_AND_BREAD,
     FROZEN,
     PANTRY,
-    BREAKFAST_AND_CEREAL,
+    BREAKFAST_AND_CERAL,
     BAKING,
     SNACKS,
     CANDY,

@@ -13,20 +13,17 @@ import { getDesktopAd, getMobileAd } from '../commons/ads/ad-utils'
 import { Footer } from '../commons/footer';
 
 
-
-
 class Categories extends React.Component {
 
-    constructor()
-    {
-    super();
+    constructor() {
+      super();
 
     /*
     https://stackoverflow.com/questions/41771441/react-cannot-read-property-of-undefined
     It is required to bind the functions inside the class to properly reference them with "this".
     Otherwise shows undefined function sometimes.
     */
-
+   
       this.getCategoryResults = this.getCategoryResults.bind(this);
       this.getCategoryFromCurrentURL = this.getCategoryFromCurrentURL.bind(this);
       this.buildAndgetRightSideAd = this.buildAndgetRightSideAd.bind(this);
@@ -38,6 +35,7 @@ class Categories extends React.Component {
       this.getDesktopAd = getDesktopAd.bind(this);
       this.getMobileAd = getMobileAd.bind(this);
     }
+  
 
     render() {
       return (
@@ -119,7 +117,7 @@ class Categories extends React.Component {
         rows.push(
           <CategoryComponent IMAGE_LINK = {value.IMAGE_PATH}
             LABEL= {value.LABEL}
-            LINK= {buildNewUrl(MAIN_CATEGORY_PATHS.SEARCH_RESULTS, {"sub-category" :  value.LINK})}
+            LINK= {buildNewUrl(MAIN_CATEGORY_PATHS.SEARCH_RESULTS, {"category" : category,"sub-category" :  value.LINK})}
           />
         )
 

@@ -13,37 +13,155 @@ Back & Category Navigation
 */
 class ProductDetails extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.getBasicInfos = this.getBasicInfos.bind(this);
+    this.getBasicDetails = this.getBasicDetails.bind(this);
+    this.getSpecification = this.getSpecification.bind(this);
+    this.getDirections = this.getDirections.bind(this);
+  }
   render() {
-    return (
+    if(this.props.PRODUCT_DETAILS.imageInfo) {
+      return (
 
 
-    <div style={{"padding" : 18}} className = "br3 shadow-1">
-        <div align="center" className = "br3 shadow-1">
-          <br/><br/><br/>
-          <img src="https://i5.walmartimages.com/asr/a470ee65-2091-4822-983f-0f6d1aeedd47.623214f477d78df440e68d75e13422e2.jpeg?odnHeight=150&odnWidth=150"></img>
+      <div style={{"padding" : 18}} className = "br3 shadow-1">
+          
+          <div align="center" className = "br3 shadow-1">
+            <img src={this.props.PRODUCT_DETAILS.imageInfo.thumbnailUrl+"?odnHeight=320&odnWidth=320&odnBg=FFFFFF"} alt="NA"></img>
+          </div>
+
+          <br/>
+
+          <div align='center'>
+    <a href={AMAZON_BUY_BUTTON.LINK} target="_blank" rel="noreferrer">
+      <img className='BuyButton' src={AMAZON_BUY_BUTTON.IMAGE_PATH} alt={AMAZON_BUY_BUTTON.ALT}/>
+    </a>
+  </div>
+
+
+        <this.getBasicInfos/>
+        <this.getBasicDetails/>
+        <this.getDirections/>
+        <this.getSpecification/>
+
+
+
+      <b>Ingredients</b>
+
+
         </div>
+
+      );
+    }
+    else return(<></>);
+  }
+
+  getSpecification() {
+
+    if(this.props.PRODUCT_DETAILS.specifications) {
+
+      var rows = [];
+
+      rows.push(  <>  < b>Specifications</b><br/> </>);
+
+      
+      for(let i=0; i<this.props.PRODUCT_DETAILS.specifications.length; i++) {
+        rows.push(
+        <ul> <b>{this.props.PRODUCT_DETAILS.specifications[i].name} </b>
         <br/>
-<b>Product Details</b><br/>
+        {this.props.PRODUCT_DETAILS.specifications[i].value}</ul>,
+      )
+    }
+   
+    return ( <>{rows}</> );
+  
+  }
+  
+  else
+    return (<></>);
 
-        Made with vine-ripened tomatoes, garlic and onions for a delicious family favorite Contains 1-1/2 servings of veggies in every 1/2 cup of sauce Sauce that is slowly simmered in tradition for a taste that families crave Available in 14oz, 24oz, 45oz and 66oz jars
-<br/>
-<br/>
-<b>Ingredients</b>
-<br/>
-Tomato Puree (Water, Tomato Paste), Diced Tomatoes In Puree [Diced Tomatoes, Tomato Puree, Calcium Chloride (Firming Aid), Citric Acid], Sugar, Soybean Oil, Onion, Salt, Dehydrated Onion, Spices, Garlic Powder, Natural Flavors.
+  }
 
-<div align='center'>
-  <a href={AMAZON_BUY_BUTTON.LINK} target="_blank">
-    <img className='BuyButton' src={AMAZON_BUY_BUTTON.IMAGE_PATH} alt={AMAZON_BUY_BUTTON.ALT}/>
-  </a>
-</div>
+  getDirections() {
 
+    if(this.props.PRODUCT_DETAILS.directions) {
 
+      var rows = [];
 
-      </div>
+      rows.push(  <>  < b>Directions</b><br/> </>);
+      
+      for(let i=0; i<this.props.PRODUCT_DETAILS.directions.length; i++) {
+        rows.push(
+        <ul> <b>{this.props.PRODUCT_DETAILS.directions[i].name} </b>
+        <br/>
+        {this.props.PRODUCT_DETAILS.directions[i].value}</ul>,
+      )
+    }
+   
+    return ( <>{rows}</> );
+  
+  }
+  
+  else
+    return (<></>);
+    
+  }
 
-    );
+  getBasicInfos() {
+
+    if(this.props.PRODUCT_DETAILS.name) {
+
+      var rows = [];
+
+      rows.push(  <>
+        <b>Product Infos</b><br/></>);
+
+      rows.push(  <>
+        <ul> Name : {this.props.PRODUCT_DETAILS.name} </ul>
+        <ul> Manufacturer : {this.props.PRODUCT_DETAILS.manufacturerName} </ul>
+        <ul> Brand : {this.props.PRODUCT_DETAILS.brand}</ul>
+      </>
+      );
+   
+    return ( <>{rows}</> );
+  
+  }
+  
+  else
+    return (<></>);
+    
+  }
+
+  getBasicDetails() {
+
+    if(this.props.PRODUCT_DETAILS.shortDescription) {
+
+      var rows = [];
+
+      rows.push(  <>
+        <b>Product Details</b><br/></>);
+
+      rows.push(  <>
+        <div
+      dangerouslySetInnerHTML={{ __html: this.props.PRODUCT_DETAILS.shortDescription }}/>
+      <div
+      dangerouslySetInnerHTML={{ __html: this.props.PRODUCT_DETAILS.longDescription }}/>
+      </>
+      );
+   
+    return ( <>{rows}</> );
+  
+  }
+  
+  else
+    return (<></>);
+    
   }
 }
+
+
+
 
 export { ProductDetails }

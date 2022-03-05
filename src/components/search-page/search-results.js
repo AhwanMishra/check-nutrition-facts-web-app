@@ -5,7 +5,8 @@ import { BackLink } from '../../utils/common-utils.js';
 import { DEFAULT_SEARCH } from '../commons/ads/right-side-ad';
 import { SearchFilter } from '../commons/search-filter';
 import { getDesktopAd, getMobileAd } from '../commons/ads/ad-utils'
-
+import { getSearchByCategory } from '../../apis/cnfApis'
+import { Loader, Alert } from '@aws-amplify/ui-react';
 
 
 import '../../style-sheets/search-page/search-page.css';
@@ -15,8 +16,15 @@ import '@aws-amplify/ui-react/styles.css';
 
 class SearchResults extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    this.category = this.getCategoryFromCurrentURL();
+    this.subCategory = this.getSubCategoryFromCurrentURL();
+
+    this.state = { pageNumber : 0, productList : [], apiFetchError : false, totalPages : 0};
+    
+    
     this.getParamFromCurrentURL = getParamFromCurrentURL.bind(this);
     this.getQueryOrCategoryFromURL = this.getQueryOrCategoryFromURL.bind(this);
     this.getSearchQueryFromCurrentURL = this.getSearchQueryFromCurrentURL.bind(this);
@@ -28,9 +36,36 @@ class SearchResults extends React.Component {
 
     this.getDesktopAd = getDesktopAd.bind(this);
     this.getMobileAd = getMobileAd.bind(this);
+
+    this.productResults = this.productResults.bind(this);
+    this.getPagination = this.getPagination.bind(this);
+
+    this.onPageChange = this.onPageChange.bind(this);
+    this.onNext = this.onNext.bind(this);
+    this.onPrevious = this.onPrevious.bind(this);
   }
 
+  async componentDidMount() {
+    this.fetchProducts();
+   }
+
+  async fetchProducts() {
+    try {
+      await getSearchByCategory(this.category, this.subCategory, this.state.pageNumber).then(response => {
+      // alert(response);
+      this.setState({productList : response.productList})
+      this.setState({totalPages : response.totalPages})
+      // alert(this.state.productList)
+      
+    });
+  } catch (error) {
+    console.log(error.response);
+    this.setState({apiFetchError : true})
+  }
+}
+
   render() {
+
     return (
     <>
       <div className='ProductResultContainer'>
@@ -43,27 +78,16 @@ class SearchResults extends React.Component {
           <div align='center'> <SearchFilter/> </div>
 
           <this.buildAndGetMobileAd/>
-
           
         <div className='ProductResults'>
-          <this.productResults/>
+          <this.productResults productResultList = {this.state.testData}/>
         </div>
       </div>
-      
-
 
       <this.buildAndGetRightSideAd/>
-
-      <Pagination
-          currentPage={1}
-          totalPages={10}
-          onChange={this.onChange}
-          onNext={this.onNext}
-          onPrevious={this.onPrevious}
-        />
+      <this.getPagination/>
       
-    </>
-    );
+    </>);
   }
 
   buildAndGetRightSideAd () {
@@ -74,16 +98,16 @@ class SearchResults extends React.Component {
       return (<this.getDesktopAd QUERY = {q}/>);
     }
 
-    let category = this.getCategoryFromCurrentURL();
-
-    if ( category !== null) {
-      return (<this.getDesktopAd QUERY = {category.replace( /-/g, ' ')}/>);
-    }
-
     let subCategory = this.getSubCategoryFromCurrentURL();
 
     if ( subCategory !== null) {
       return (<this.getDesktopAd QUERY = {subCategory.replace(/-/g, ' ')}/>);
+    }
+
+    let category = this.getCategoryFromCurrentURL();
+
+    if ( category !== null) {
+      return (<this.getDesktopAd QUERY = {category.replace( /-/g, ' ')}/>);
     }
 
     else {
@@ -137,22 +161,66 @@ class SearchResults extends React.Component {
     return getParamFromCurrentURL('category');
   }
 
-  productResults() {
+  async getCategorySearchResultFromApi () {
+    return await getSearchByCategory("alcohol", "red-wine", "0");
+  }
+
+  getPagination(){
+    if(this.state.totalPages > 0) {
+      return (<Pagination
+      currentPage={this.state.pageNumber + 1}
+      totalPages={this.state.totalPages}
+      onChange={this.onPageChange}
+      onNext={this.onNext}
+      onPrevious={this.onPrevious}
+    />)
+    }
+    else return null;
+  }
+
+  onPageChange(event, value) {
+    this.resetPageStateAndFetch(event - 1)
+  }
+
+  onPrevious() {
+    this.resetPageStateAndFetch(this.state.pageNumber - 1)
+  }
+  onNext() {
+    this.resetPageStateAndFetch(this.state.pageNumber + 1)
+  }
+
+  // We want to reset the page state and then want to call the API again.
+  resetPageStateAndFetch(pNum) {
+    this.setState(
+      {
+        pageNumber : pNum, productList : [], apiFetchError : false
+      },
+      // The below function is executed after the setState. A feature of setState.
+      function() {
+        this.fetchProducts();
+      }
+      );
+  }
+
+  productResults(productList) {
+
+    if(this.state.apiFetchError) {
+      return (<>  <Alert variation="error"> Error loading product details ! Please come back in a while. </Alert></>);
+    }
+
+    if(this.state.productList.length === 0) {
+      return (<> <br/><br/><br/><Loader width="6rem" height="6rem" filledColor="var(--amplify-colors-blue-40)" />  <br/><br/><br/> </>);
+    }
+
     var rows = [];
-    for(let i=0; i<7; i++) {
+    for(let i=0; i<this.state.productList.length; i++) {
       rows.push(
-        <ProductComponent IMAGE_LINK = 'https://i5.walmartimages.com/asr/dac4f4eb-02d5-4432-9069-33c8e4608bcb_1.c6c32e75f7fc4bf6c22720ec63249994.jpeg?odnHeight=320&odnWidth=320&odnBg=FFFFFF'
-          LABEL='Freshness Guaranteed White Sub Rolls, 16 oz, 6 Count at Walmart'
-          LINK='/product-details'
+        <ProductComponent IMAGE_LINK = {this.state.productList[i].thumbnailUrl+"?odnHeight=180&odnWidth=180&odnBg=FFFFFF"}
+          LABEL={this.state.productList[i].name}
+          LINK={'/product-details?productId='+this.state.productList[i].usItemId}
         />
       )
     }
-    rows.push(
-      <ProductComponent IMAGE_LINK = 'https://i5.walmartimages.com/asr/dac4f4eb-02d5-4432-9069-33c8e4608bcb_1.c6c32e75f7fc4bf6c22720ec63249994.jpeg?odnHeight=320&odnWidth=320&odnBg=FFFFFF'
-        LABEL='Freshness Guaranteed White Sub Rolls, 16 oz, 6 Count at Walmart more text more text motre df dfd df fd dfg'
-        LINK='/product-details'
-      />
-    )
 
     if(true) {
       return ( <>{rows}</> );
