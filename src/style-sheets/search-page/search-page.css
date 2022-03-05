@@ -62,8 +62,8 @@
 
 .BackToSearch {
 	width: 100%;
-	display: inline;
-	text-align: right;
+	/* display: inline; */
+	/* text-align: right; */
 }
 .BackToSearch a {
 	text-decoration: none;

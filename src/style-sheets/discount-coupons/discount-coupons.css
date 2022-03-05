@@ -34,12 +34,12 @@
 
 .DiscountComponent a {
 	text-decoration: none;
-	color: #5F6368;
+	color: #5f6862;
 }
   
   
 .DiscountComponent:hover{
-	background-color: #F1F3F4;
+	background-color: #f3fcf3;
 }
   
   

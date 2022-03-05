@@ -33,6 +33,14 @@ class CnfPieChart extends React.Component {
         }
     }
 
+    getLabelData(fatValue, proteinValue, carbValue) {
+        let labelData = [];
+        if(fatValue != 0) labelData.push( { title: 'Fat',  value: this.FAT, color: '#FCD668' });
+        if(carbValue != 0) labelData.push( { title: 'Carb', value: this.CARB, color: '#636363' });
+        if(proteinValue != 0) labelData.push({ title: 'Protein', value: this.PROTEIN, color: '#4E8CF4' });
+        return labelData
+    }
+
     render() {
 
         if(Object.keys(this.props.MACROS).length === 0) return (<></>);
@@ -40,20 +48,14 @@ class CnfPieChart extends React.Component {
         this.setMacros();
         return (
             <PieChart style={{ height: '171px', width : "auto" /*backgroundColor : 'gray'*/ }}
-            data={
-                [
-                    { title: 'Fat',  value: this.FAT, color: '#FCD668' },
-                    { title: 'Carb', value: this.CARB, color: '#4E8CF4' },
-                    { title: 'Protein', value: this.PROTEIN, color: '#636363' },
-                ]
-            }
+            data={this.getLabelData(this.FAT, this.PROTEIN, this.CARB)}
 
 
 
             label={({ dataEntry }) => dataEntry.title}
 
             labelStyle={{
-                fontSize: "7px",
+                fontSize: "6px",
                 fill: "#FFFFFF"
               }}
 

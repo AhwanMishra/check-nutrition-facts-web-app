@@ -49,10 +49,8 @@ class DiscountCoupons extends React.Component {
 
     <>
     <div className='DiscountResultContainer'>
-      <br/>
       <label className='DiscountResultsText'>Discount Coupons for Grocery and Gourmet Food </label>
-      <br/><div className='BackToSearch'> <BackLink/> </div>
-<br/><br/>
+      <br/> <br/> <div className='BackToSearch'> <BackLink/> </div>
       <br/>
         
       <div className='DiscountResults'>

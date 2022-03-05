@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { RightSideAd } from '../commons/ads/right-side-ad';
+import { DEFAULT_SEARCH, RightSideAd } from '../commons/ads/right-side-ad';
 import { CnfPieChart } from './pie-chart';
 import { ProductDetails } from './product-details';
 import '../../style-sheets/product-details/product-details.css';
 import { NutritionDetails } from './nutrition-details';
 import { getProductDetails } from '../../apis/cnfApis';
-import { getParamFromCurrentURL } from '../../utils/common-utils.js';
+import { getParamFromCurrentURL, BackLink } from '../../utils/common-utils.js';
 import { Loader, Alert } from '@aws-amplify/ui-react';
 
 
@@ -35,6 +35,7 @@ class ProductPage extends React.Component {
     this.getProductPage = this.getProductPage.bind(this);
     this.getProductIdCurrentURL = this.getProductIdCurrentURL.bind(this);
     this.productID = this.getProductIdCurrentURL();
+    this.getAdSearchName = this.getAdSearchName.bind(this);
   }
 
 
@@ -74,6 +75,21 @@ class ProductPage extends React.Component {
     return macrosAmount;
   }
 
+  getAdSearchName() {
+    if(this.state.productDetails.length === 0) return DEFAULT_SEARCH;
+
+    let productNameSplitList = this.state.productDetails.name.split(',');
+    
+    let productName = "";
+    
+    for (let i=0; i<productNameSplitList.length - 1; i++) {
+      productName = productName + " " + productNameSplitList[i]  ;
+    }
+    
+    return productName;
+    
+  }
+
 
   render() {
     
@@ -82,12 +98,16 @@ class ProductPage extends React.Component {
     }
 
     if(this.state.productDetails.length === 0) {
-      return (<> <br/><br/><br/> <Loader width="6rem" height="6rem" filledColor="var(--amplify-colors-blue-40)" />  <br/><br/><br/>  </>);
+      
+      return (<> 
+            <br/><div className='BackToSearch'> <BackLink/> </div>
+      <br/><br/><br/> <Loader width="6rem" height="6rem" filledColor="var(--amplify-colors-blue-40)" />  <br/><br/><br/>  </>);
     }
       return (
        <>
-       
-        <this.getProductPage/>
+          <div align = "center" className='BackToSearch'> <BackLink/> </div>
+          <this.getProductPage/>
+          
        </>
       );
     }
@@ -95,18 +115,21 @@ class ProductPage extends React.Component {
 
     getProductPage() {
       return ( <div align="center" className = 'OuterMostDiv'>
-          
+
       <div align = 'center' style={{color: "#636363", display: 'block', borderStyle: "none"}}>
 
         <div align = 'center' className='SecondOuterDiv '>
 
-            <div align = 'center' className='InnerMostDiv br3 shadow-1'>
+            {/* shadow-1  */}
+            <div align = 'center' className='InnerMostDiv br3 '> 
               <h3> <b>Macros Distribution</b> </h3>
-                <div className = "PieChart br3 shadow-1" >
+
+              
+                <div className = "PieChart br3 " >
                       Amount<br/>  Per Gram <br/>
                     <CnfPieChart TYPE={"AmountPerGram"} MACROS = {this.state.macros}/>
                 </div> 
-                <div className = "PieChart br3 shadow-1"> 
+                <div className = "PieChart br3 "> 
                     Where do calories<br/>come from ?<br/>
                     <CnfPieChart TYPE={"CaloryDistribution"} MACROS = {this.state.macros}/>
                 </div> 
@@ -118,12 +141,12 @@ class ProductPage extends React.Component {
             </div>
 
             <div align = 'left' className='InnerMostDiv'>
-                <ProductDetails PRODUCT_DETAILS = {this.state.productDetails}/>
+                <ProductDetails PRODUCT_DETAILS = {this.state.productDetails} AD_SEARCH={this.getAdSearchName()}/>
             </div>
 
         </div>
 
-        <RightSideAd/>
+        <RightSideAd AD_SEARCH={this.getAdSearchName()}/>
 
 
 

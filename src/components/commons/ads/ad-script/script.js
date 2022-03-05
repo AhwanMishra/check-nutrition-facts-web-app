@@ -1,7 +1,8 @@
+import {referralId} from '../../../../constants/other-constants';
 const SearchAdConfiguration = `
 amzn_assoc_placement = "adunit0";
 amzn_assoc_search_bar = "false";
-amzn_assoc_tracking_id = "amazongloba0c-20";
+amzn_assoc_tracking_id = "${referralId}";
 amzn_assoc_ad_mode = "search";
 amzn_assoc_ad_type = "smart";
 amzn_assoc_marketplace = "amazon";

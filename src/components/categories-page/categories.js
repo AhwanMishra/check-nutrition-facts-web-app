@@ -42,9 +42,8 @@ class Categories extends React.Component {
         <>
           <div className='CategoryResultContainer'>
 
-            <br/>
             <label className='CategoryResultsText'>Search food by Categories</label>
-            <br/>
+            <br/> <br/>
             <div className='BackToSearch'> <BackLink/> </div>
 
             <this.buildAndgetMobileAd/>

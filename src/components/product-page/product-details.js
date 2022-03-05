@@ -20,22 +20,23 @@ class ProductDetails extends React.Component {
     this.getBasicDetails = this.getBasicDetails.bind(this);
     this.getSpecification = this.getSpecification.bind(this);
     this.getDirections = this.getDirections.bind(this);
+    this.getAmazonBuyLink = this.getAmazonBuyLink.bind(this);
   }
   render() {
     if(this.props.PRODUCT_DETAILS.imageInfo) {
       return (
 
-
-      <div style={{"padding" : 18}} className = "br3 shadow-1">
-          
-          <div align="center" className = "br3 shadow-1">
+        // shadow-1
+      <div style={{"padding" : 18}} className = "br3 ">
+                  {/* shadow-1 */}
+          <div align="center" className = "br3">
             <img src={this.props.PRODUCT_DETAILS.imageInfo.thumbnailUrl+"?odnHeight=320&odnWidth=320&odnBg=FFFFFF"} alt="NA"></img>
           </div>
 
           <br/>
 
           <div align='center'>
-    <a href={AMAZON_BUY_BUTTON.LINK} target="_blank" rel="noreferrer">
+    <a href={this.getAmazonBuyLink()} target="_blank" rel="noreferrer">
       <img className='BuyButton' src={AMAZON_BUY_BUTTON.IMAGE_PATH} alt={AMAZON_BUY_BUTTON.ALT}/>
     </a>
   </div>
@@ -56,6 +57,10 @@ class ProductDetails extends React.Component {
       );
     }
     else return(<></>);
+  }
+
+  getAmazonBuyLink () {
+    return AMAZON_BUY_BUTTON.LINK + "&keywords=" + this.props.AD_SEARCH;
   }
 
   getSpecification() {
@@ -120,8 +125,8 @@ class ProductDetails extends React.Component {
 
       rows.push(  <>
         <ul> Name : {this.props.PRODUCT_DETAILS.name} </ul>
-        <ul> Manufacturer : {this.props.PRODUCT_DETAILS.manufacturerName} </ul>
-        <ul> Brand : {this.props.PRODUCT_DETAILS.brand}</ul>
+        {/* <ul> Manufacturer : {this.props.PRODUCT_DETAILS.manufacturerName} </ul>
+        <ul> Brand : {this.props.PRODUCT_DETAILS.brand}</ul> */}
       </>
       );
    

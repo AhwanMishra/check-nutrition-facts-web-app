@@ -1,4 +1,6 @@
 import { useHistory } from "react-router-dom";
+import { Button } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
 export function reDirect(history, path, params) {
 
@@ -48,7 +50,7 @@ export const BackLink = () => {
     let history = useHistory();
     return (
         <>
-          <button onClick={() => history.goBack()}> Back </button>
+          <Button style = {{backgroundColor: "#FFFFFF"}}onClick={() => history.goBack()}> Back </Button>
         </>
     );
 };

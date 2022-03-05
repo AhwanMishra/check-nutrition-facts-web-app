@@ -3,10 +3,11 @@ import { ProductComponent } from './product-component'
 import { getParamFromCurrentURL } from '../../utils/common-utils.js';
 import { BackLink } from '../../utils/common-utils.js';
 import { DEFAULT_SEARCH } from '../commons/ads/right-side-ad';
-import { SearchFilter } from '../commons/search-filter';
+// import { SearchFilter } from '../commons/search-filter';
 import { getDesktopAd, getMobileAd } from '../commons/ads/ad-utils'
 import { getSearchByCategory } from '../../apis/cnfApis'
 import { Loader, Alert } from '@aws-amplify/ui-react';
+import { Footer } from '../commons/footer';
 
 
 import '../../style-sheets/search-page/search-page.css';
@@ -72,10 +73,10 @@ class SearchResults extends React.Component {
 
           <label className='SearchResultsText'>Search Results for <i>"{this.getQueryOrCategoryFromURL().replace(/-/g, ' ')}"</i>.</label>
           
-
+          <br/> <br/>
           <div className='BackToSearch'> <BackLink/> </div>
 
-          <div align='center'> <SearchFilter/> </div>
+          {/* <div align='center'> <SearchFilter/> </div> .....Coming Soon */}
 
           <this.buildAndGetMobileAd/>
           
@@ -86,6 +87,7 @@ class SearchResults extends React.Component {
 
       <this.buildAndGetRightSideAd/>
       <this.getPagination/>
+      <Footer/>
       
     </>);
   }

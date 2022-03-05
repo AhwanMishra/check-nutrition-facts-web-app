@@ -6,7 +6,8 @@ class Blogs extends React.Component {
   render() {
     return (
     <>
-      Blogs will be shown here !
+      <h3>Coming Soon.</h3>
+      We are a new team
     </>
     );
   }
