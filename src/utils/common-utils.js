@@ -1,7 +1,6 @@
 import { useHistory } from "react-router-dom";
-import { Button } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
-
+import { Button } from '@mui/material'
+import { useEffect } from "react";
 export function reDirect(history, path, params) {
 
   history.push({
@@ -50,7 +49,24 @@ export const BackLink = () => {
     let history = useHistory();
     return (
         <>
-          <Button style = {{backgroundColor: "#FFFFFF"}}onClick={() => history.goBack()}> Back </Button>
+          <Button style = {{backgroundColor: "#FCE08E"}}onClick={() => history.goBack()}> Back </Button>
         </>
     );
 };
+
+export function useTitle(title) {
+  useEffect(() => {
+    const prevTitle = document.title
+    document.title = title
+    return () => {
+      document.title = prevTitle
+    }
+  })
+}
+
+export const TitleComponent = (props) => {
+  useTitle(props.TITLE)
+  return (
+    <></>
+  )
+}

@@ -1,13 +1,17 @@
 import React from 'react';
 
-import { DEFAULT_SEARCH, RightSideAd } from '../commons/ads/right-side-ad';
+import { DEFAULT_SEARCH } from '../commons/ads/right-side-ad';
+import { getDesktopAd, getMobileAd } from '../commons/ads/ad-utils'
 import { CnfPieChart } from './pie-chart';
 import { ProductDetails } from './product-details';
 import '../../style-sheets/product-details/product-details.css';
 import { NutritionDetails } from './nutrition-details';
 import { getProductDetails } from '../../apis/cnfApis';
-import { getParamFromCurrentURL, BackLink } from '../../utils/common-utils.js';
-import { Loader, Alert } from '@aws-amplify/ui-react';
+import { getParamFromCurrentURL, BackLink, TitleComponent } from '../../utils/common-utils.js';
+import {  Alert , AlertTitle} from '@mui/material';
+import { CircularProgress } from '@mui/material/';
+import { Footer } from '../commons/footer';
+// import { Helmet } from 'react-helmet';
 
 
 /*
@@ -34,8 +38,13 @@ class ProductPage extends React.Component {
     this.state = { productDetails : [], apiFetchError : false, macros : {} }
     this.getProductPage = this.getProductPage.bind(this);
     this.getProductIdCurrentURL = this.getProductIdCurrentURL.bind(this);
+    this.getProductNameCurrentURL = this.getProductNameCurrentURL.bind(this);
     this.productID = this.getProductIdCurrentURL();
+    this.productName = this.getProductNameCurrentURL();
+    this.pageTitle = this.productName + " Nutrition Facts"
     this.getAdSearchName = this.getAdSearchName.bind(this);
+    this.getDesktopAd = getDesktopAd.bind(this);
+    this.getMobileAd = getMobileAd.bind(this);
   }
 
 
@@ -50,11 +59,16 @@ class ProductPage extends React.Component {
     });
   } catch (error) {
     console.log(error.response);
-    this.setState({apiFetchError : true})
+    this.setState({apiFetchError : true});
+
   }}
 
   getProductIdCurrentURL () {
     return getParamFromCurrentURL('productId');
+  }
+
+  getProductNameCurrentURL () {
+    return getParamFromCurrentURL('productName');
   }
 
   getMacroNutrients ( nutritionFacts ) {
@@ -85,32 +99,73 @@ class ProductPage extends React.Component {
     for (let i=0; i<productNameSplitList.length - 1; i++) {
       productName = productName + " " + productNameSplitList[i]  ;
     }
+
+    if(productName === "") {
+      productName = productNameSplitList[0];
+    }
     
     return productName;
     
   }
 
 
-  render() {
-    
+  render() {    
     if(this.state.apiFetchError) {
-      return (<> <Alert variation="error">Error loading product details ! Please come back in a while. </Alert> </>);
+      return (<>
+      <div className='BackToSearch'> <BackLink/> </div><br/>
+          <TitleComponent TITLE={this.pageTitle}/>
+
+      
+       <div align = "center">
+      <Alert  style={{width :"max-content"}}variant = "outlined" severity="error">
+        <AlertTitle style ={{display : "flex",    width: "max-content" }}>Error loading product details ! </AlertTitle>
+        Please come back in a while.</Alert></div> </>);
     }
 
-    if(this.state.productDetails.length === 0) {
+    else if(this.state.productDetails.length === 0) {
       
       return (<> 
-            <br/><div className='BackToSearch'> <BackLink/> </div>
-      <br/><br/><br/> <Loader width="6rem" height="6rem" filledColor="var(--amplify-colors-blue-40)" />  <br/><br/><br/>  </>);
+
+        <TitleComponent TITLE={this.pageTitle}/>
+        <br/>
+
+
+        <label className='ProductResultsText'>Product Result for <i>"{this.getProductNameCurrentURL()}"</i>.</label>
+
+            <br/>
+            <br/> <div className='BackToSearch'> <BackLink/> </div>
+      <br/><br/><br/> <CircularProgress color = 'primary' size={72}/> <br/><br/><br/>  </>);
     }
-      return (
+    
+    else {return (
        <>
+
+      {/* <TitleComponent TITLE={this.pageTitle}/> */}
+      {/* <div className="App">
+      <Helmet>
+        <title>App Title</title>
+        <meta name="description" content="App Description" />
+        <meta name="theme-color" content="#008f68" />
+      </Helmet>
+    </div> */}
+      <br/>
+      <label className='ProductResultsText'>Product Result for <i>"{this.getProductNameCurrentURL()}"</i>.</label>
+          <br/><br/>
+
           <div align = "center" className='BackToSearch'> <BackLink/> </div>
+
+          <this.getMobileAd AD_SEARCH={this.getAdSearchName()}/>
+
           <this.getProductPage/>
+          <Footer/>
+
+
+
           
        </>
       );
     }
+  }
     // else return (<> hiii </>);
 
     getProductPage() {
@@ -146,7 +201,8 @@ class ProductPage extends React.Component {
 
         </div>
 
-        <RightSideAd AD_SEARCH={this.getAdSearchName()}/>
+        <this.getDesktopAd AD_SEARCH={this.getAdSearchName()}/>
+
 
 
 

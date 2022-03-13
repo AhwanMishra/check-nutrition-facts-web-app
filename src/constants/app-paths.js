@@ -35,6 +35,8 @@ const CANDY = 'candy';
 const BEVERAGES = 'beverages';
 const COFFEE = 'coffee';
 const ALCOHOL = 'alcohol';
+const BABY_FOOD = 'baby-food';
+const PROTEIN_FITNESS = 'protein-fitness';
 
 
 const FOOD_CATEGORY_PATHS = {
@@ -51,7 +53,9 @@ const FOOD_CATEGORY_PATHS = {
     CANDY,
     BEVERAGES,
     COFFEE,
-    ALCOHOL
+    ALCOHOL,
+    BABY_FOOD,
+    PROTEIN_FITNESS
 };
 
 
@@ -209,6 +213,17 @@ const COCKTAILS_AND_MIXERS = 'cocktails-mixers';
 const LIGHT_AND_LOW_CALORIE_ALCOHOL = 'light-low-calorie-alcohol';
 const NON_ALCOHOLIC_BEER_AND_WINE = 'non-alcoholic-beer-wine';
 
+// BABY_FOOD.............................................................
+const BABY_BEVERAGES = 'baby-beverages';
+const BABY_FOOD_SUB = 'baby-food';
+const BABY_FORMULA = 'baby-formula';
+
+// PROTEIN_FITNESS.........................................................
+const ENERGY_ENDURANCE = 'energy-endurance';
+const PROTEIN_BARS = 'protein-bars';
+const PROTEIN_POWDER = 'protein-powder';
+const PROTEIN_SHAKES = 'protein-shakes';
+
 
 const FOOD_SUB_CATEGORY_PATHS = {
     FRESH_FRUIT,
@@ -327,7 +342,14 @@ const FOOD_SUB_CATEGORY_PATHS = {
     // LIQUOR,
     COCKTAILS_AND_MIXERS,
     LIGHT_AND_LOW_CALORIE_ALCOHOL,
-    NON_ALCOHOLIC_BEER_AND_WINE
+    NON_ALCOHOLIC_BEER_AND_WINE,
+    BABY_BEVERAGES,
+    BABY_FOOD_SUB,
+    BABY_FORMULA,
+    ENERGY_ENDURANCE,
+    PROTEIN_BARS,
+    PROTEIN_POWDER,
+    PROTEIN_SHAKES
 };
 
 export { MAIN_CATEGORY_PATHS, FOOD_CATEGORY_PATHS, FOOD_SUB_CATEGORY_PATHS};

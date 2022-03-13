@@ -6,13 +6,16 @@ import { Header } from '../commons/header';
 import { LeftPanel } from '../commons/left-panel.js';
 
 import '../../style-sheets/home-page/home-page.css';
+
 class HomePage extends React.Component {
 
 
+ 
+
   render() {
+
     return (
     <div className="HomePageDefaults">
-        
         <Header/>
                 
         <div className="HomePageCenter"> 

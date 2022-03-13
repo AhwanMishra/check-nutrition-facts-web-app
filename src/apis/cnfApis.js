@@ -1,4 +1,4 @@
-import { API } from "aws-amplify";
+import { API } from "@aws-amplify/api";
 import { CNF_SERVICE_NAME, CNF_SERVICE_API_KEY, SEARCH_PATH, ADS_PATH, PRODUCT_DETAILS_PATH} from './apiConstants';
 
 

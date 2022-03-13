@@ -591,10 +591,46 @@ const LIGHT_AND_LOW_CALORIE_ALCOHOL = {
     LINK: FOOD_SUB_CATEGORY_PATHS.LIGHT_AND_LOW_CALORIE_ALCOHOL
 };
 const NON_ALCOHOLIC_BEER_AND_WINE = {
-    LABEL: "Non-Alcoholic Beer & Wine",
+    LABEL: "Non Alcoholic Beer & Wine",
     IMAGE_PATH: food_categories,
     LINK: FOOD_SUB_CATEGORY_PATHS.NON_ALCOHOLIC_BEER_AND_WINE
 };
+const BABY_BEVERAGES = {
+    LABEL: "Baby Beverages",
+    IMAGE_PATH: food_categories,
+    LINK: FOOD_SUB_CATEGORY_PATHS.BABY_BEVERAGES
+};
+const BABY_FOOD_SUB = {
+    LABEL: "Baby Food",
+    IMAGE_PATH: food_categories,
+    LINK: FOOD_SUB_CATEGORY_PATHS.BABY_FOOD_SUB
+};
+const BABY_FORMULA = {
+    LABEL: "Baby Formula",
+    IMAGE_PATH: food_categories,
+    LINK: FOOD_SUB_CATEGORY_PATHS.BABY_FORMULA
+};
+const ENERGY_ENDURANCE = {
+    LABEL: "Energy Endurance",
+    IMAGE_PATH: food_categories,
+    LINK: FOOD_SUB_CATEGORY_PATHS.ENERGY_ENDURANCE
+};
+const PROTEIN_BARS = {
+    LABEL: "Protein Bars",
+    IMAGE_PATH: food_categories,
+    LINK: FOOD_SUB_CATEGORY_PATHS.PROTEIN_BARS
+};
+const PROTEIN_POWDER = {
+    LABEL: "Protein Powder",
+    IMAGE_PATH: food_categories,
+    LINK: FOOD_SUB_CATEGORY_PATHS.PROTEIN_POWDER
+};
+const PROTEIN_SHAKES = {
+    LABEL: "Protein Shakes",
+    IMAGE_PATH: food_categories,
+    LINK: FOOD_SUB_CATEGORY_PATHS.PROTEIN_SHAKES
+};
+
 
 
 const FRESH_PRODUCE = {
@@ -828,6 +864,29 @@ const ALCOHOL = {
     }
 };
 
+const BABY_FOOD = {
+    LABEL: "Baby Food",
+    IMAGE_PATH: food_categories,
+    LINK: FOOD_CATEGORY_PATHS.BABY_FOOD,
+    SUB_CATEGORIES: {
+        BABY_BEVERAGES,
+        BABY_FOOD_SUB,
+        BABY_FORMULA
+    }
+};
+
+const PROTEIN_FITNESS = {
+    LABEL: "Protein Fitness",
+    IMAGE_PATH: food_categories,
+    LINK: FOOD_CATEGORY_PATHS.PROTEIN_FITNESS,
+    SUB_CATEGORIES: {
+        ENERGY_ENDURANCE,
+        PROTEIN_POWDER,
+        PROTEIN_SHAKES,
+        PROTEIN_BARS
+    }
+};
+
 
 const FOOD_CATEGORIES = {
     FRESH_PRODUCE,
@@ -843,7 +902,9 @@ const FOOD_CATEGORIES = {
     CANDY,
     BEVERAGES,
     COFFEE,
-    ALCOHOL
+    ALCOHOL,
+    BABY_FOOD,
+    PROTEIN_FITNESS
 };
 
 

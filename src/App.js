@@ -1,7 +1,7 @@
 import { HomePage } from './components/home-page/home-page.js';
 import './style-sheets/main.css';
 
-import Amplify from 'aws-amplify';
+import { Amplify } from '@aws-amplify/core';
 import { CNF_SERVICE_NAME, CNF_SERVICE_URL } from './apis/apiConstants.js';
 
 

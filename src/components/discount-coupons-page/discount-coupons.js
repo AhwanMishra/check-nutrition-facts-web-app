@@ -2,14 +2,11 @@ import React from 'react';
 import { DiscountComponent } from '../discount-coupons-page/discount-component';
 import { RightSideAd } from '../commons/ads/right-side-ad';
 import '../../style-sheets/discount-coupons/discount-coupons.css';
-import { BackLink } from '../../utils/common-utils';
+import { BackLink, TitleComponent } from '../../utils/common-utils';
 import { Footer } from '../commons/footer';
-import { Pagination } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
-import { Loader, Alert } from '@aws-amplify/ui-react';
 import { getAds } from '../../apis/cnfApis';
-
-
+import { Pagination } from '@mui/material';
+import { CircularProgress, Alert , AlertTitle} from '@mui/material/';
 
 class DiscountCoupons extends React.Component {
 
@@ -20,8 +17,6 @@ class DiscountCoupons extends React.Component {
     this.discountResults = this.discountResults.bind(this);
     this.getPagination = this.getPagination.bind(this);
     this.onPageChange = this.onPageChange.bind(this);
-    this.onNext = this.onNext.bind(this);
-    this.onPrevious = this.onPrevious.bind(this);
   }
 
   async componentDidMount() {
@@ -31,10 +26,8 @@ class DiscountCoupons extends React.Component {
   async fetchAds() {
       try {
         await getAds(this.state.pageNumber).then(response => {
-        // alert(response);
         this.setState({adsList : response.productList})
         this.setState({totalPages : response.totalPages})
-        // alert(this.state.productList)
         
       });
     } catch (error) {
@@ -55,15 +48,17 @@ class DiscountCoupons extends React.Component {
         
       <div className='DiscountResults'>
         <this.discountResults/>
+        <div className='Pagination'><this.getPagination/></div>
+
       </div>
 
-      <this.getPagination/>
 
     </div>
 
 
     <RightSideAd/>
     <Footer/>
+    <TitleComponent TITLE="Discount Coupons On Food Items"/>
 
 
     </>
@@ -72,28 +67,21 @@ class DiscountCoupons extends React.Component {
 
   getPagination(){
     if(this.state.totalPages > 0) {
-      return (<Pagination
-      currentPage={this.state.pageNumber + 1}
-      totalPages={this.state.totalPages}
-      onChange={this.onPageChange}
-      onNext={this.onNext}
-      onPrevious={this.onPrevious}
-    />)
-    }
+      return (
+    
+    <Pagination
+      count={this.state.totalPages}
+      page = {this.state.pageNumber + 1}
+      onChange = {this.onPageChange}
+      />
+    )}
+    
     else return null;
   }
 
-  onPageChange(event, value) {
-    this.resetPageStateAndFetch(event - 1)
+  onPageChange(event, pNum) {
+    this.resetPageStateAndFetch(pNum - 1)
   }
-
-  onPrevious() {
-    this.resetPageStateAndFetch(this.state.pageNumber - 1)
-  }
-  onNext() {
-    this.resetPageStateAndFetch(this.state.pageNumber + 1)
-  }
-
 
   // We want to reset the page state and then want to call the API again.
   resetPageStateAndFetch(pNum) {
@@ -114,11 +102,15 @@ class DiscountCoupons extends React.Component {
   discountResults() {
 
     if(this.state.apiFetchError) {
-      return (<> <Alert variation="error">Error loading discount coupons ! Please come back in a while. </Alert> </>);
+      return (
+        <div align = "center">
+      <Alert  style={{width :"max-content"}}variant = "outlined" severity="error">
+        <AlertTitle style ={{display : "flex",    width: "max-content" }}>Error loading discount coupons ! </AlertTitle>
+        Please come back in a while.</Alert></div>);
     }
 
     if(this.state.adsList.length === 0) {
-      return (<> <br/><br/><br/> <Loader width="6rem" height="6rem" filledColor="var(--amplify-colors-blue-40)" />  <br/><br/><br/>  </>);
+      return (<> <br/><br/><br/> <CircularProgress color = 'primary' size={72}/> <br/><br/><br/>  </>);
     }
 
     var rows = [];

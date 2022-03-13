@@ -30,7 +30,7 @@ class MobileAd extends React.Component {
       case '/product-details':
         
           this.finalSearchAdConfiguration = util.format(SearchAdConfiguration , 'Buy from Amazon :',
-          'Belvita Cinnamon Brown Sugar Breakfast' , 1); //It will be changed
+          this.props.propsFromParent.AD_SEARCH , 1);
           break;
 
       case '/':

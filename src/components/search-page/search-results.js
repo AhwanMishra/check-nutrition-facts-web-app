@@ -1,19 +1,16 @@
 import React from 'react';
 import { ProductComponent } from './product-component'
 import { getParamFromCurrentURL } from '../../utils/common-utils.js';
-import { BackLink } from '../../utils/common-utils.js';
+import { BackLink, TitleComponent } from '../../utils/common-utils.js';
 import { DEFAULT_SEARCH } from '../commons/ads/right-side-ad';
-// import { SearchFilter } from '../commons/search-filter';
 import { getDesktopAd, getMobileAd } from '../commons/ads/ad-utils'
 import { getSearchByCategory } from '../../apis/cnfApis'
-import { Loader, Alert } from '@aws-amplify/ui-react';
 import { Footer } from '../commons/footer';
+import { Pagination, CircularProgress, Alert , AlertTitle} from '@mui/material';
 
 
 import '../../style-sheets/search-page/search-page.css';
-
-import { Pagination } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
+import '../../style-sheets/commons/commons.css'
 
 class SearchResults extends React.Component {
 
@@ -23,7 +20,7 @@ class SearchResults extends React.Component {
     this.category = this.getCategoryFromCurrentURL();
     this.subCategory = this.getSubCategoryFromCurrentURL();
 
-    this.state = { pageNumber : 0, productList : [], apiFetchError : false, totalPages : 0};
+    this.state = { pageNumber : parseInt(this.getPageNumberFromCurrentURL()), productList : [], apiFetchError : false, totalPages : 0};
     
     
     this.getParamFromCurrentURL = getParamFromCurrentURL.bind(this);
@@ -31,6 +28,8 @@ class SearchResults extends React.Component {
     this.getSearchQueryFromCurrentURL = this.getSearchQueryFromCurrentURL.bind(this);
     this.getCategoryFromCurrentURL = this.getCategoryFromCurrentURL.bind(this);
     this.getSubCategoryFromCurrentURL = this.getSubCategoryFromCurrentURL.bind(this);
+    this.getPageNumberFromCurrentURL = this.getPageNumberFromCurrentURL.bind(this);
+    this.title = this.getQueryOrCategoryFromURL() + " nutrition facts"
 
     this.buildAndGetRightSideAd = this.buildAndGetRightSideAd.bind(this);
     this.buildAndGetMobileAd = this.buildAndGetMobileAd.bind(this);
@@ -40,10 +39,10 @@ class SearchResults extends React.Component {
 
     this.productResults = this.productResults.bind(this);
     this.getPagination = this.getPagination.bind(this);
+    this.getApiFetchAlert = this.getApiFetchAlert.bind(this);
 
     this.onPageChange = this.onPageChange.bind(this);
-    this.onNext = this.onNext.bind(this);
-    this.onPrevious = this.onPrevious.bind(this);
+    this.getPageNumberFromCurrentURL();
   }
 
   async componentDidMount() {
@@ -53,11 +52,8 @@ class SearchResults extends React.Component {
   async fetchProducts() {
     try {
       await getSearchByCategory(this.category, this.subCategory, this.state.pageNumber).then(response => {
-      // alert(response);
       this.setState({productList : response.productList})
-      this.setState({totalPages : response.totalPages})
-      // alert(this.state.productList)
-      
+      this.setState({totalPages : response.totalPages})      
     });
   } catch (error) {
     console.log(error.response);
@@ -69,7 +65,9 @@ class SearchResults extends React.Component {
 
     return (
     <>
+    <TitleComponent TITLE={this.title}/>
       <div className='ProductResultContainer'>
+
 
           <label className='SearchResultsText'>Search Results for <i>"{this.getQueryOrCategoryFromURL().replace(/-/g, ' ')}"</i>.</label>
           
@@ -83,10 +81,11 @@ class SearchResults extends React.Component {
         <div className='ProductResults'>
           <this.productResults productResultList = {this.state.testData}/>
         </div>
-      </div>
 
+        <div className='Pagination'><this.getPagination/></div>
+
+      </div>
       <this.buildAndGetRightSideAd/>
-      <this.getPagination/>
       <Footer/>
       
     </>);
@@ -151,6 +150,12 @@ class SearchResults extends React.Component {
 
   }
 
+  getPageNumberFromCurrentURL() {
+    let pNum = getParamFromCurrentURL('pageNumber');
+    if(pNum) return(pNum);
+    else return(0);
+  }
+
   getSearchQueryFromCurrentURL () {
     return getParamFromCurrentURL('q');
   }
@@ -163,32 +168,33 @@ class SearchResults extends React.Component {
     return getParamFromCurrentURL('category');
   }
 
+  getApiFetchAlert() {
+    return(
+      <div align = "center">
+      <Alert  style={{width :"max-content"}}variant = "outlined" severity="error">
+        <AlertTitle style ={{display : "flex",    width: "max-content" }}>Error loading product details ! </AlertTitle>
+        Please come back in a while.</Alert></div>);
+  }
+
   async getCategorySearchResultFromApi () {
     return await getSearchByCategory("alcohol", "red-wine", "0");
   }
 
   getPagination(){
     if(this.state.totalPages > 0) {
-      return (<Pagination
-      currentPage={this.state.pageNumber + 1}
-      totalPages={this.state.totalPages}
-      onChange={this.onPageChange}
-      onNext={this.onNext}
-      onPrevious={this.onPrevious}
-    />)
+      return (
+      <Pagination
+      count={this.state.totalPages}
+      // boundaryCount = {3}
+      page = {this.state.pageNumber + 1}
+      onChange = {this.onPageChange}
+      />)
     }
     else return null;
   }
 
-  onPageChange(event, value) {
-    this.resetPageStateAndFetch(event - 1)
-  }
-
-  onPrevious() {
-    this.resetPageStateAndFetch(this.state.pageNumber - 1)
-  }
-  onNext() {
-    this.resetPageStateAndFetch(this.state.pageNumber + 1)
+  onPageChange(event, pNum) {
+    this.resetPageStateAndFetch(pNum - 1)
   }
 
   // We want to reset the page state and then want to call the API again.
@@ -207,11 +213,17 @@ class SearchResults extends React.Component {
   productResults(productList) {
 
     if(this.state.apiFetchError) {
-      return (<>  <Alert variation="error"> Error loading product details ! Please come back in a while. </Alert></>);
+      return (
+      <>  
+      <br/>
+        <this.getApiFetchAlert/>
+
+       </>
+       );
     }
 
     if(this.state.productList.length === 0) {
-      return (<> <br/><br/><br/><Loader width="6rem" height="6rem" filledColor="var(--amplify-colors-blue-40)" />  <br/><br/><br/> </>);
+      return (<> <br/><br/><br/> <CircularProgress color = 'primary' size={72}/> <br/><br/><br/> </>);
     }
 
     var rows = [];
@@ -219,7 +231,7 @@ class SearchResults extends React.Component {
       rows.push(
         <ProductComponent IMAGE_LINK = {this.state.productList[i].thumbnailUrl+"?odnHeight=180&odnWidth=180&odnBg=FFFFFF"}
           LABEL={this.state.productList[i].name}
-          LINK={'/product-details?productId='+this.state.productList[i].usItemId}
+          LINK={'/product-details?productId='+this.state.productList[i].usItemId+"&productName="+this.state.productList[i].name}
         />
       )
     }

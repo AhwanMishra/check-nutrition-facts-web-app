@@ -35,9 +35,9 @@ class CnfPieChart extends React.Component {
 
     getLabelData(fatValue, proteinValue, carbValue) {
         let labelData = [];
-        if(fatValue != 0) labelData.push( { title: 'Fat',  value: this.FAT, color: '#FCD668' });
-        if(carbValue != 0) labelData.push( { title: 'Carb', value: this.CARB, color: '#636363' });
-        if(proteinValue != 0) labelData.push({ title: 'Protein', value: this.PROTEIN, color: '#4E8CF4' });
+        if(fatValue !== 0) labelData.push( { title: 'Fat',  value: this.FAT, color: '#FCD668' });
+        if(carbValue !== 0) labelData.push( { title: 'Carb', value: this.CARB, color: '#636363' });
+        if(proteinValue !== 0) labelData.push({ title: 'Protein', value: this.PROTEIN, color: '#4E8CF4' });
         return labelData
     }
 

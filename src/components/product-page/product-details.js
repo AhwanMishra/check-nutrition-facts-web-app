@@ -19,38 +19,44 @@ class ProductDetails extends React.Component {
     this.getBasicInfos = this.getBasicInfos.bind(this);
     this.getBasicDetails = this.getBasicDetails.bind(this);
     this.getSpecification = this.getSpecification.bind(this);
+    this.getIngredients = this.getIngredients.bind(this);
     this.getDirections = this.getDirections.bind(this);
     this.getAmazonBuyLink = this.getAmazonBuyLink.bind(this);
   }
   render() {
-    if(this.props.PRODUCT_DETAILS.imageInfo) {
+    if(this.props.PRODUCT_DETAILS.thumbnailUrl) {
       return (
 
         // shadow-1
       <div style={{"padding" : 18}} className = "br3 ">
                   {/* shadow-1 */}
           <div align="center" className = "br3">
-            <img src={this.props.PRODUCT_DETAILS.imageInfo.thumbnailUrl+"?odnHeight=320&odnWidth=320&odnBg=FFFFFF"} alt="NA"></img>
+            <img src={this.props.PRODUCT_DETAILS.thumbnailUrl+"?odnHeight=320&odnWidth=320&odnBg=FFFFFF"} alt="NA"></img>
           </div>
 
           <br/>
 
           <div align='center'>
     <a href={this.getAmazonBuyLink()} target="_blank" rel="noreferrer">
-      <img className='BuyButton' src={AMAZON_BUY_BUTTON.IMAGE_PATH} alt={AMAZON_BUY_BUTTON.ALT}/>
-    </a>
-  </div>
+      <table className='BuyButton'>
+        <tr>
+          <td>
+          <img src={AMAZON_BUY_BUTTON.IMAGE_PATH} alt={AMAZON_BUY_BUTTON.ALT}/>
+          </td>
+          <td>
+            Buy Now from <br/><b>Amazon</b>
+            </td>
+            </tr>
+          </table>
+      </a>
+    </div>
 
 
         <this.getBasicInfos/>
         <this.getBasicDetails/>
         <this.getDirections/>
         <this.getSpecification/>
-
-
-
-      <b>Ingredients</b>
-
+        <this.getIngredients/>
 
         </div>
 
@@ -121,6 +127,7 @@ class ProductDetails extends React.Component {
       var rows = [];
 
       rows.push(  <>
+      <br/>
         <b>Product Infos</b><br/></>);
 
       rows.push(  <>
@@ -163,6 +170,28 @@ class ProductDetails extends React.Component {
   else
     return (<></>);
     
+  }
+
+  getIngredients() {
+    if(this.props.PRODUCT_DETAILS.ingredients && this.props.PRODUCT_DETAILS.ingredients.value) {
+
+      var rows = [];
+
+      rows.push(  <>
+      <br/>
+      <b>Ingredients</b><br/></>);
+
+      rows.push(  <>
+      {this.props.PRODUCT_DETAILS.ingredients.value}
+        {/* <ul> Manufacturer : {this.props.PRODUCT_DETAILS.manufacturerName} </ul>
+        <ul> Brand : {this.props.PRODUCT_DETAILS.brand}</ul> */}
+      </>
+      );
+   
+      return ( <>{rows}</> );
+    }
+    else
+    return (<></>);
   }
 }
 

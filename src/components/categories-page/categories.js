@@ -6,7 +6,7 @@ import { FOOD_CATEGORIES } from '../../constants/food-categories';
 import { FOOD_CATEGORY_PATHS, MAIN_CATEGORY_PATHS } from '../../constants/app-paths.js';
 import { getParamFromCurrentURL, addParamToURL } from '../../utils/common-utils.js';
 import { DEFAULT_SEARCH } from '../commons/ads/right-side-ad';
-import { buildNewUrl, BackLink } from '../../utils/common-utils.js';
+import { buildNewUrl, BackLink, TitleComponent } from '../../utils/common-utils.js';
 
 import { getDesktopAd, getMobileAd } from '../commons/ads/ad-utils'
 
@@ -17,6 +17,7 @@ class Categories extends React.Component {
 
     constructor() {
       super();
+      console.log(JSON.stringify(FOOD_CATEGORIES))
 
     /*
     https://stackoverflow.com/questions/41771441/react-cannot-read-property-of-undefined
@@ -60,8 +61,6 @@ class Categories extends React.Component {
           <this.buildAndgetRightSideAd/>
 
           <Footer/>
-
-
           
         </>
         );
@@ -108,6 +107,7 @@ class Categories extends React.Component {
         )
 
         ));
+        rows.push(<TitleComponent TITLE="CNF Food Categories"/>);
     } else {
 
       let CATEGORY = Object.keys(FOOD_CATEGORY_PATHS).find(key => FOOD_CATEGORY_PATHS[key] === category);
@@ -121,6 +121,8 @@ class Categories extends React.Component {
         )
 
         ));
+        let title = category + " Nutrition Facts"
+        rows.push(<TitleComponent TITLE={title}/>);
     }
 
     if(true) {
