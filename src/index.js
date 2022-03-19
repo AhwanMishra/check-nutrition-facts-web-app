@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 
 // App.use(cors()) // Use this after the variable declaration
 
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

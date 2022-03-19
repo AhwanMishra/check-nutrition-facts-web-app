@@ -10,7 +10,7 @@ import '../../style-sheets/home-page/home-page.css';
 class HomePage extends React.Component {
 
 
- 
+
 
   render() {
 
@@ -33,7 +33,7 @@ class HomePage extends React.Component {
     );
   }
 
-
+  
 }
 
 export { HomePage }
