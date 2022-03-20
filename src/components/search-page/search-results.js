@@ -7,6 +7,7 @@ import { getDesktopAd, getMobileAd } from '../commons/ads/ad-utils'
 import { getSearchByCategory } from '../../apis/cnfApis'
 import { Footer } from '../commons/footer';
 import { Pagination, CircularProgress, Alert , AlertTitle} from '@mui/material';
+import MetaTags from 'react-meta-tags';
 
 
 import '../../style-sheets/search-page/search-page.css';
@@ -63,15 +64,28 @@ class SearchResults extends React.Component {
 
   render() {
 
+    let item = this.getQueryOrCategoryFromURL().replace(/-/g, ' ');
+    let metaDescription = "";
+    if(item) {
+        metaDescription = "Nutrition Facts for " + item;
+    }
+
     return (
     <>
     <TitleComponent TITLE={this.title}/>
+
+    {item && <MetaTags>
+          <meta name="description" content={metaDescription} />
+        </MetaTags>}
+
+
+
       <div className='ProductResultContainer'>
 
 
-          <label className='SearchResultsText'>Search Results for <i>"{this.getQueryOrCategoryFromURL().replace(/-/g, ' ')}"</i>.</label>
+          <h1 className='SearchResultsText'>Search Results for <i>"{item}"</i>.</h1>
           
-          <br/> <br/>
+        
           <div className='BackToSearch'> <BackLink/> </div>
 
           {/* <div align='center'> <SearchFilter/> </div> .....Coming Soon */}

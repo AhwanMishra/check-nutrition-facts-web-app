@@ -11,7 +11,7 @@ import { getParamFromCurrentURL, BackLink, TitleComponent } from '../../utils/co
 import {  Alert , AlertTitle} from '@mui/material';
 import { CircularProgress } from '@mui/material/';
 import { Footer } from '../commons/footer';
-// import { Helmet } from 'react-helmet';
+import MetaTags from 'react-meta-tags';
 
 
 /*
@@ -109,7 +109,10 @@ class ProductPage extends React.Component {
   }
 
 
-  render() {    
+  render() {
+
+    let metaDescription = `Nutrition facts for ${this.getProductNameCurrentURL()}`
+
     if(this.state.apiFetchError) {
       return (<>
       <div className='BackToSearch'> <BackLink/> </div><br/>
@@ -126,31 +129,29 @@ class ProductPage extends React.Component {
       
       return (<> 
 
+        <MetaTags>
+          <meta name="description" content={metaDescription} />
+        </MetaTags>
+
         <TitleComponent TITLE={this.pageTitle}/>
         <br/>
 
 
-        <label className='ProductResultsText'>Product Result for <i>"{this.getProductNameCurrentURL()}"</i>.</label>
+        <h1 className='ProductResultsText'>Nutrition facts for <i>"{this.getProductNameCurrentURL()}"</i>.</h1>
 
-            <br/>
-            <br/> <div className='BackToSearch'> <BackLink/> </div>
+             <div className='BackToSearch'> <BackLink/> </div>
       <br/><br/><br/> <CircularProgress color = 'primary' size={72}/> <br/><br/><br/>  </>);
     }
     
     else {return (
        <>
 
-      {/* <TitleComponent TITLE={this.pageTitle}/> */}
-      {/* <div className="App">
-      <Helmet>
-        <title>App Title</title>
-        <meta name="description" content="App Description" />
-        <meta name="theme-color" content="#008f68" />
-      </Helmet>
-    </div> */}
+        <MetaTags>
+          <meta name="description" content={metaDescription} />
+        </MetaTags>
+
       <br/>
-      <label className='ProductResultsText'>Product Result for <i>"{this.getProductNameCurrentURL()}"</i>.</label>
-          <br/><br/>
+      <h1 className='ProductResultsText'>Nutrition facts for <i>"{this.getProductNameCurrentURL()}"</i>.</h1>
 
           <div align = "center" className='BackToSearch'> <BackLink/> </div>
 

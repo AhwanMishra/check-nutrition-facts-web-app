@@ -58,6 +58,12 @@
 .CategoryResultsText {
 	color: #5F6368;
 	font-size: 18px;
+	font-weight: normal;
+}
+.SearchResultsText {
+	color: #5F6368;
+	font-size: 18px;
+	font-weight:normal;
 }
 
 .BackToSearch {

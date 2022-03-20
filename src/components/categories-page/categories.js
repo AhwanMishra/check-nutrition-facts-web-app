@@ -12,6 +12,8 @@ import { getDesktopAd, getMobileAd } from '../commons/ads/ad-utils'
 
 import { Footer } from '../commons/footer';
 
+import MetaTags from 'react-meta-tags';
+
 
 class Categories extends React.Component {
 
@@ -39,12 +41,22 @@ class Categories extends React.Component {
   
 
     render() {
+
+      let category = this.getCategoryFromCurrentURL();
+      let metaDescription = "";
+      if(category) {
+        metaDescription = "Nutrition Facts for " + category;
+      }
+
       return (
         <>
+
+        {category && <MetaTags>
+          <meta name="description" content={metaDescription} />
+        </MetaTags>}
           <div className='CategoryResultContainer'>
 
-            <label className='CategoryResultsText'>Search food by Categories</label>
-            <br/> <br/>
+            <h1 className='CategoryResultsText'>Search food by Categories</h1>
             <div className='BackToSearch'> <BackLink/> </div>
 
             <this.buildAndgetMobileAd/>

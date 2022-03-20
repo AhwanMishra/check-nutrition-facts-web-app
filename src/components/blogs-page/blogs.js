@@ -5,7 +5,6 @@ class Blogs extends React.Component {
 
 
   render() {
-    // useTitle("New Title");
     return (
     <>
               <div align = "center" className='BackToSearch'> <BackLink/> </div>
