@@ -149,6 +149,7 @@ class ProductPage extends React.Component {
         <MetaTags>
           <meta name="description" content={metaDescription} />
         </MetaTags>
+        <TitleComponent TITLE={this.pageTitle}/>
 
       <br/>
       <h1 className='ProductResultsText'>Nutrition facts for <i>"{this.getProductNameCurrentURL()}"</i>.</h1>
