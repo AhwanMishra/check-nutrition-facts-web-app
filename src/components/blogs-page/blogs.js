@@ -1,4 +1,5 @@
 import React from 'react';
+import { BackLink} from '../../utils/common-utils';
 
 class Blogs extends React.Component {
 
@@ -6,7 +7,7 @@ class Blogs extends React.Component {
   render() {
     return (
     <>
-              <div align = "center" className='BackToSearch'>  </div>
+                <div align = "center" className='BackToSearch'> <BackLink/> </div>
 
       <h3>Coming Soon.</h3>
 
