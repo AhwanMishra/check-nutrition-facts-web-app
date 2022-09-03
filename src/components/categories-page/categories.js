@@ -19,7 +19,7 @@ class Categories extends React.Component {
 
     constructor() {
       super();
-      console.log(JSON.stringify(FOOD_CATEGORIES))
+      // console.log(JSON.stringify(FOOD_CATEGORIES))
 
     /*
     https://stackoverflow.com/questions/41771441/react-cannot-read-property-of-undefined

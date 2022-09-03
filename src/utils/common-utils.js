@@ -17,26 +17,18 @@ export function buildNewUrl(path, params) {
   return path + "?" + new URLSearchParams(params).toString();
 }
 
+//https://stackoverflow.com/questions/11401897/get-the-current-domain-name-with-javascript-not-the-path-etc
 // Add a single param to a URL already containing some params 
 
 export function addParamToURL(param, value) {
 
-    let existingParam = getParamFromCurrentURL(param);
+  let currentURL = new URL(window.location.href);
+  let currentPath = currentURL.pathname;
 
-    // Replace & return if it is already present
-    if(existingParam !== null) {
-      let currentURL = new URL(document.location);
-      currentURL.searchParams.set(param, value);
-      return currentURL;
-    }
-    
-    // Add & return otherwise
-    if(window.location.search === "") {
-      return window.location.href + "?"+param+"="+value;
-    } else {
-      return window.location.href + "&"+param+"="+value;
-    }
-  }
+  currentURL.searchParams.set(param, value);
+  let newAllParams = currentURL.search;
+  return currentPath + newAllParams;
+}
 
 export function getParamFromCurrentURL (param) {
 

@@ -6,7 +6,9 @@ import { DEFAULT_SEARCH } from '../commons/ads/right-side-ad';
 import { getDesktopAd, getMobileAd } from '../commons/ads/ad-utils'
 import { getSearchByCategory } from '../../apis/cnfApis'
 import { Footer } from '../commons/footer';
-import { Pagination, CircularProgress, Alert , AlertTitle} from '@mui/material';
+import { CircularProgress, Alert , AlertTitle} from '@mui/material';
+import Pagination from "../../utils/pagination";
+
 import MetaTags from 'react-meta-tags';
 
 
@@ -42,8 +44,8 @@ class SearchResults extends React.Component {
     this.getPagination = this.getPagination.bind(this);
     this.getApiFetchAlert = this.getApiFetchAlert.bind(this);
 
-    this.onPageChange = this.onPageChange.bind(this);
-    this.getPageNumberFromCurrentURL();
+    this.resetPageStateAndFetch = this.resetPageStateAndFetch.bind(this);
+    this.fetchProducts = this.fetchProducts.bind(this);
   }
 
   async componentDidMount() {
@@ -52,7 +54,7 @@ class SearchResults extends React.Component {
 
   async fetchProducts() {
     try {
-      await getSearchByCategory(this.category, this.subCategory, this.state.pageNumber).then(response => {
+      await getSearchByCategory(this.category, this.subCategory, this.state.pageNumber - 1).then(response => {
       this.setState({productList : response.productList})
       this.setState({totalPages : response.totalPages})      
     });
@@ -96,7 +98,9 @@ class SearchResults extends React.Component {
           <this.productResults productResultList = {this.state.testData}/>
         </div>
 
-        <div className='Pagination'><this.getPagination/></div>
+        <div align='center'>
+          <div className='PaginationParent'><this.getPagination/></div>
+        </div>
 
       </div>
       <this.buildAndGetRightSideAd/>
@@ -167,7 +171,7 @@ class SearchResults extends React.Component {
   getPageNumberFromCurrentURL() {
     let pNum = getParamFromCurrentURL('pageNumber');
     if(pNum) return(pNum);
-    else return(0);
+    else return(1);
   }
 
   getSearchQueryFromCurrentURL () {
@@ -195,20 +199,19 @@ class SearchResults extends React.Component {
   }
 
   getPagination(){
-    if(this.state.totalPages > 0) {
+
+    let totalPages = this.state.totalPages;
+    let currentPage = this.getPageNumberFromCurrentURL();
+    if(totalPages > 0) {
       return (
-      <Pagination
-      count={this.state.totalPages}
-      // boundaryCount = {3}
-      page = {this.state.pageNumber + 1}
-      onChange = {this.onPageChange}
-      />)
+        <>
+        <Pagination totalPages={totalPages} currentPage={currentPage} resetPageStateAndFetch = {this.resetPageStateAndFetch}/>
+        Total Pages : {totalPages}
+
+        </>
+      )
     }
     else return null;
-  }
-
-  onPageChange(event, pNum) {
-    this.resetPageStateAndFetch(pNum - 1)
   }
 
   // We want to reset the page state and then want to call the API again.
