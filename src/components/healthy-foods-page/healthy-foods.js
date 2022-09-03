@@ -8,17 +8,16 @@ class HealthyFoods extends React.Component {
       <>
                 <div align = "center" className='BackToSearch'> <BackLink/> </div>
   
-        <h3>Coming Soon.</h3>
-        We are a new passionate team working to provide accurate Nutrition Facts <br/> and Product information about all the food
-        products sold in the USA.<br/><br/><br/> We also provide amazing Discount Coupons for food items<br/> 
-        on stores like Amazon.
+        <h3> Hello :)</h3>
+        <h2 style={{ color: '#5F6368' }}> In this page we will provide you a list of healthy foods based on nutrional values.
+        <br/> <br/>We will add ranking, sort and comparision feature<br/> to help you find the best food for you for each food category.</h2>
+        <br/> <br/><h3> As of now, Please visit the Category page to find the list of all food items.</h3>
         <br/><br/><br/>
-         As an early customer, we value your presence and request you to fill out the form <br/> 
-        below to provide your valuable suggestions. 
-  
-        <br/><br/><br/>
-        <a target="_blank" rel="noreferrer" href="https://forms.gle/dCZPAjwWbJ929qqXA">Click Here</a>
-        <TitleComponent TITLE="CNF Healthy Foods"/>
+        <TitleComponent TITLE="CNF About"/>
+
+
+      <p/>
+      Contact : checknutritionfacts@gmail.com
       </>
       );
   }
